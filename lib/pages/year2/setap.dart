@@ -208,6 +208,7 @@ class _SetupState extends State<Setup> {
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                               decoration: TextDecoration.underline),
+                            textAlign: TextAlign.center,
                         ),
                         SizedBox(height: 16),
                         

@@ -657,6 +657,8 @@ class _AIState extends State<AI> {
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                               decoration: TextDecoration.underline),
+                                                    textAlign: TextAlign.center,
+
                         ),
                         SizedBox(height: 16),
                         
