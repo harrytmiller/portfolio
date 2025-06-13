@@ -166,9 +166,13 @@ showMenu(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          'Year 2 Usability Study with Redesign',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                        Container(
+                          width: double.infinity,
+                          child: Text(
+                            'Year 2 Usability Study with Redesign',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                          ),
                         ),
                         SizedBox(height: 16),
                         
@@ -224,9 +228,13 @@ showMenu(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          'Year 2 Security Report',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                        Container(
+                          width: double.infinity,
+                          child: Text(
+                            'Year 2 Security Report',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                          ),
                         ),
                         SizedBox(height: 16),
                         
@@ -282,9 +290,13 @@ showMenu(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          'Year 3 Usability Study',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                        Container(
+                          width: double.infinity,
+                          child: Text(
+                            'Year 3 Usability Study',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                          ),
                         ),
                         SizedBox(height: 16),
                         
@@ -340,9 +352,13 @@ showMenu(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          'Year 3 Networks Report',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                        Container(
+                          width: double.infinity,
+                          child: Text(
+                            'Year 3 Networks Report',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                          ),
                         ),
                         SizedBox(height: 16),
                         

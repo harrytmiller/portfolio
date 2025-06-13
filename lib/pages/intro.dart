@@ -84,9 +84,11 @@ class _IntroState extends State<Intro> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 20),
-            Center(
+            Container(
+              width: double.infinity,
               child: Text(
                 title,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 24,
                   color: Colors.black,
@@ -153,7 +155,7 @@ class _IntroState extends State<Intro> {
                     Text(
                       'This portfolio serves to showcase projects I have completed during and after my university studies. ',
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
-                      textAlign: TextAlign.justify,
+                      textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 12),
                     Text(
@@ -205,25 +207,25 @@ class _IntroState extends State<Intro> {
                     Text(
                       'My name is Harry Miller, I am 21 years old, and I recently graduated with First Class Honours in Computing from the University of Portsmouth. I\'m passionate about computing and expressing creativity through making things. I like turning ideas into reality by combining technical skills with creative thinking. I also enjoy complex problem solving as it allows for critical thinking, as well as satisfaction of finding the solution. I believe in continuous learning and personal development, I like to challenge myself both academically and personally to reach my full potential.',
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
-                      textAlign: TextAlign.justify,
+                      textAlign: TextAlign.left,
                     ),
                     SizedBox(height: 12),
                     Text(
                       'My degree is broad and covers different topics such as: usability, user interface design, security, software engineering, 3d design and animation, artificial intelligence, networks and databases (some of which are covered in my portfolio). I have coded with python, flutter/dart, sql and some java. I have made multiple applications, the most relevant of which are accessible through this portfolio. It has been a goal of mine to achieve as highly as I am capable of at university. This includes both learning and understanding academic knowledge to score highly in exams, and applying what I know to produce high quality courseworks.',
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
-                      textAlign: TextAlign.justify,
+                      textAlign: TextAlign.left,
                     ),
                     SizedBox(height: 12),
                     Text(
                       'My academic success reflects my commitment to excellence. I\'m excited to apply both my technical skills and creative perspective to meaningful projects that challenge me to grow.',
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
-                      textAlign: TextAlign.justify,
+                      textAlign: TextAlign.left,
                     ),
                     SizedBox(height: 12),
                     Text(
                       'Please note: I have visible tattoos including on my face, neck, and hands, which are part of my personal expression and authentic identity.',
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
-                      textAlign: TextAlign.justify,
+                      textAlign: TextAlign.left,
                     ),
                     SizedBox(height: 20),
                     Center(
@@ -298,9 +300,11 @@ class _IntroState extends State<Intro> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 20),
-                      Center(
+                      Container(
+                        width: double.infinity,
                         child: Text(
                           'Curriculum Vitae',
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 24,
                             color: Colors.black,
@@ -314,7 +318,7 @@ class _IntroState extends State<Intro> {
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: Text(
                          'My CV contains details about my educational background, work history, technical and soft skills, and achievements. It provides an overview of my academic journey that demonstrates my qualifications and readiness for future opportunities.',                          style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
-                          textAlign: TextAlign.justify,
+                          textAlign: TextAlign.left,
                         ),
                       ),
                       SizedBox(height: 20),
