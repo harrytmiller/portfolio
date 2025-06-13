@@ -245,7 +245,7 @@ class _IntroState extends State<Intro> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6),
                           child: Image.asset(
-                            'images/83.jpeg',
+                            'assets/images/83.jpeg',
                             height: 400,
                             width: 400,
                             fit: BoxFit.cover,
