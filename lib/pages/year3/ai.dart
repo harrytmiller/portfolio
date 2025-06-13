@@ -1116,4 +1116,3 @@ class _AIState extends State<AI> {
     return (_imagePaths.length - _thumbnailStartIndex).clamp(1, _thumbnailsPerPage);  
   }
 }
-        
