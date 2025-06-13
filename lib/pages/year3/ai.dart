@@ -106,19 +106,19 @@ class _AIState extends State<AI> {
       // Load the appropriate Python file from pyfiles folder
       switch (fileNumber) {
         case 1:
-          pythonCode = await rootBundle.loadString('pyfiles/Q1.py');
+          pythonCode = await rootBundle.loadString('assets/pyfiles/Q1.py');
           description = 'Part A: Genetic Algorithm';
           break;
         case 2:
-          pythonCode = await rootBundle.loadString('pyfiles/Q2.py');
+          pythonCode = await rootBundle.loadString('assets/pyfiles/Q2.py');
           description = 'Part B: Genetic Algorithm';
           break;
         case 3:
-          pythonCode = await rootBundle.loadString('pyfiles/Q3.py');
+          pythonCode = await rootBundle.loadString('assets/pyfiles/Q3.py');
           description = 'Part C: Neural Network';
           break;
         case 4:
-          pythonCode = await rootBundle.loadString('pyfiles/Q4.py');
+          pythonCode = await rootBundle.loadString('assets/pyfiles/Q4.py');
           description = 'Part D: Neural Network (Requires Dataset)';
           needsDataset = true;
           break;
@@ -482,17 +482,17 @@ class _AIState extends State<AI> {
   Future<String> _loadDatasetContent() async {
     try {
       // Load the dataset file from pyfiles folder
-      final String datasetContent = await rootBundle.loadString('pyfiles/dataset.csv');
+      final String datasetContent = await rootBundle.loadString('assets/pyfiles/dataset.csv');
       return datasetContent;
     } catch (e) {
-      throw Exception('Dataset file not found in pyfiles/dataset.csv');
+      throw Exception('Dataset file not found in assets/pyfiles/dataset.csv');
     }
   }
 
   void _downloadDataset() async {
     try {
       // Load the dataset file from pyfiles folder
-      final String datasetContent = await rootBundle.loadString('pyfiles/dataset.csv');
+      final String datasetContent = await rootBundle.loadString('assets/pyfiles/dataset.csv');
       
       final bytes = utf8.encode(datasetContent);
       final blob = html.Blob([bytes], 'text/csv');
@@ -524,7 +524,7 @@ class _AIState extends State<AI> {
 
   void _copyDatasetToClipboard() async {
     try {
-      final String datasetContent = await rootBundle.loadString('pyfiles/dataset.csv');
+      final String datasetContent = await rootBundle.loadString('assets/pyfiles/dataset.csv');
       Clipboard.setData(ClipboardData(text: datasetContent));
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Dataset copied to clipboard!')),
@@ -745,7 +745,7 @@ class _AIState extends State<AI> {
                           child: ElevatedButton.icon(
                             onPressed: () async {
                               try {
-                                final ByteData data = await rootBundle.load('folders/AI_Submission.zip');
+                                final ByteData data = await rootBundle.load('assets/folders/AI_Submission.zip');
                                 final Uint8List bytes = data.buffer.asUint8List();
                                 
                                 final blob = html.Blob([bytes], 'application/zip');
