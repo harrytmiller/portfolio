@@ -6,8 +6,8 @@ import 'package:portfolio/pages/year3.dart';
 import 'package:portfolio/pages/writeup.dart';
 import 'package:portfolio/pages/year2/DesignAnimate.dart'; // Design page
 import 'package:portfolio/pages/year3/Dissertation.dart'; // Add your dissertation page import
-import 'package:portfolio/pages/year2/Setap.dart'; // Add Setup page import
-import 'package:portfolio/pages/year2/App.dart'; // Add App page import
+import 'package:portfolio/pages/year2/setap.dart'; // Add Setup page import
+import 'package:portfolio/pages/year2/app.dart'; // Add App page import
 import 'package:portfolio/pages/year3/ai.dart'; // Add App page import
 
 
