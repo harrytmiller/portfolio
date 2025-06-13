@@ -155,7 +155,7 @@ class _IntroState extends State<Intro> {
                     Text(
                       'This portfolio serves to showcase projects I have completed during and after my university studies. ',
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.left,
                     ),
                     SizedBox(height: 12),
                     Text(
