@@ -205,7 +205,7 @@ class _IntroState extends State<Intro> {
                   title: 'Personal Introduction',
                   children: [
                     Text(
-                      'My name is Harry Miller, I am 21 years old, and I recently graduated with First Class Honours in Computing from the University of Portsmouth. I\'m passionate about computing and expressing creativity through making things. I like turning ideas into reality by combining technical skills with creative thinking. I also enjoy complex problem solving as it allows for critical thinking, as well as satisfaction of finding the solution. I believe in continuous learning and personal development, I like to challenge myself both academically and personally to reach my full potential.',
+                      'My name is Harry Tiger Miller, I am 21 years old, and I recently graduated with First Class Honours in Computing from the University of Portsmouth. I\'m passionate about computing and expressing creativity through making things. I like turning ideas into reality by combining technical skills with creative thinking. I also enjoy complex problem solving as it allows for critical thinking, as well as satisfaction of finding the solution. I believe in continuous learning and personal development, I like to challenge myself both academically and personally to reach my full potential.',
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
                       textAlign: TextAlign.left,
                     ),
@@ -535,7 +535,7 @@ class _IntroState extends State<Intro> {
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('[Grade]', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
+                            child: Text('65.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
                           ),
                         ]),
                       ],
