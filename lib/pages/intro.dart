@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'dart:typed_data';
+import 'dart:html' as html;
 
 class Intro extends StatefulWidget {
   @override
@@ -55,6 +58,62 @@ class _IntroState extends State<Intro> {
       setState(() {
         _isMenuOpen = true;
       });
+    }
+  }
+
+  void _openPDFViewer(String pdfPath, String title) async {
+    try {
+      final ByteData data = await rootBundle.load(pdfPath);
+      final Uint8List bytes = data.buffer.asUint8List();
+      
+      if (bytes.length == 0) {
+        throw Exception('PDF file is empty');
+      }
+      
+      final blob = html.Blob([bytes], 'application/pdf');
+      final url = html.Url.createObjectUrlFromBlob(blob);
+      
+      final windowName = title.replaceAll(' ', '_').replaceAll('-', '_');
+      html.window.open(url, windowName);
+      
+      Future.delayed(Duration(seconds: 1), () {
+        html.Url.revokeObjectUrl(url);
+      });
+      
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('PDF Error'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Could not load PDF file:'),
+                SizedBox(height: 8),
+                Text(
+                  pdfPath,
+                  style: TextStyle(fontFamily: 'monospace', fontSize: 12),
+                ),
+                SizedBox(height: 12),
+                Text('Error: ${e.toString()}'),
+                SizedBox(height: 12),
+                Text('Please check:'),
+                Text('• PDF file exists in assets/files/'),
+                Text('• PDF is not corrupted or password-protected'),
+                Text('• File is properly referenced in pubspec.yaml'),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
     }
   }
 
@@ -317,7 +376,8 @@ class _IntroState extends State<Intro> {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: Text(
-                         'My CV contains details about my educational background, work history, technical and soft skills, and achievements. It provides an overview of my academic journey that demonstrates my qualifications and readiness for future opportunities.',                          style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
+                         'My CV contains details about my educational background, work history, technical and soft skills, and achievements. It provides an overview of my academic journey that demonstrates my qualifications and readiness for future opportunities.',
+                          style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
                           textAlign: TextAlign.left,
                         ),
                       ),
@@ -327,7 +387,7 @@ class _IntroState extends State<Intro> {
                         margin: EdgeInsets.only(top: 0),
                         child: ElevatedButton.icon(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/CV');
+                            _openPDFViewer('assets/files/CV.pdf', 'Curriculum Vitae');
                           },
                           icon: Icon(Icons.picture_as_pdf, color: Colors.white),
                           label: Text(
