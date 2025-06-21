@@ -223,7 +223,7 @@ class _IntroState extends State<Intro> {
                     ),
                     SizedBox(height: 12),
                     Text(
-                      '• Introduction: Portfolio introduction, personal introduction, curriculum vitae and grade breakdown',
+                      '• Introduction: Portfolio Introduction, Personal Introduction, Curriculum Vitae and Grade Breakdown',
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
                     ),
                     SizedBox(height: 6),
@@ -238,7 +238,7 @@ class _IntroState extends State<Intro> {
                     Text(
                       '• Year 3: Projects and coursework completed during my final year at university\n'
                       '       -Dissertaion: Math app showcase page, including screenshots and running prototype\n'
-                      '       -Artificial intelligence: Genetic algorithm and neural networks showcase page, including python coad and output screenshots',
+                      '       -Artificial Intelligence: Genetic algorithm and neural networks showcase page, including Python coad and output screenshots',
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
                     ),                    
                     SizedBox(height: 6),
@@ -270,7 +270,7 @@ class _IntroState extends State<Intro> {
                     ),
                     SizedBox(height: 12),
                     Text(
-                      'My degree is broad and covers different topics such as: usability, user interface design, security, software engineering, 3d design and animation, artificial intelligence, networks and databases (some of which are covered in my portfolio). I have coded with python, flutter/dart, sql and some java. I have made multiple applications, the most relevant of which are accessible through this portfolio. It has been a goal of mine to achieve as highly as I am capable of at university. This includes both learning and understanding academic knowledge to score highly in exams, and applying what I know to produce high quality courseworks.',
+                      'My degree is broad and covers different topics such as: usability, user interface design, security, software engineering, 3D design and animation, artificial intelligence, networks and databases (some of which are covered in this portfolio). I have coded with Python, Flutter/Dart, Sql and some Java. I have made multiple applications, the most relevant of which are accessible through this portfolio. It has been a goal of mine to achieve as highly as I am capable of at university. This includes both learning and understanding academic knowledge to score highly in exams, and applying what I know to produce high quality courseworks.',
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
                       textAlign: TextAlign.left,
                     ),
@@ -435,7 +435,7 @@ class _IntroState extends State<Intro> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Overall GPA:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                              Text('[X.XX]', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                              Text('3.99', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                             ],
                           ),
                           SizedBox(height: 8),
@@ -443,7 +443,7 @@ class _IntroState extends State<Intro> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Year 2 Average:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                              Text('74.4%.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                              Text('74.40%.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                             ],
                           ),
                           SizedBox(height: 8),
@@ -451,7 +451,7 @@ class _IntroState extends State<Intro> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Year 3 Average:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                              Text('[XX%]', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                              Text('70.00%.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                             ],
                           ),
                         ],
@@ -575,7 +575,7 @@ class _IntroState extends State<Intro> {
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('[Grade]', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
+                            child: Text('80.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
                           ),
                         ]),
                         TableRow(children: [

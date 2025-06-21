@@ -144,7 +144,7 @@ showMenu(
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
-                            'This page showcases my 3D design and animation project completed as one of my university courseworks. The project explores key aspects of both design and animation including modeling, texturing, lighting, rigging and animation using autodesk\'s 3Ds Max.',
+                            'This page showcases my 3D design and animation project completed as one of my university courseworks. The project explores key aspects of both design and animation including modeling, texturing, lighting, rigging and animation using Autodesk\'s 3Ds Max.',
                             style: TextStyle(fontSize: 16, color: Colors.black),
                             textAlign: TextAlign.center,
                           ),

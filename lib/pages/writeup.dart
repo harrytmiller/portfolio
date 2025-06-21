@@ -180,7 +180,7 @@ showMenu(
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
-                            'This report examines the usability of the "learnchoralmusic.co.uk" website and documents its redesign. The study employs user centered design methodology including persona development, cognitive walkthroughs, and hierarchical task analysis to evaluate existing usability problems and develop solutions. I completed this study for the design side of my user experience design and implementation module.',
+                            'This report examines the usability of the "learnchoralmusic.co.uk" website and documents its redesign. The study employs user centered design methodology including persona development, cognitive walkthroughs, and hierarchical task analysis to evaluate existing usability problems and develop solutions. I completed this study for the design side of my User Experience Design and Implementation module.',
                             style: TextStyle(fontSize: 16, color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
@@ -242,7 +242,7 @@ showMenu(
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
-                            'This report is from a business information systems security (BISS) perspective and analyses the risks and benefits of implementing completely keyless car technology, specifically focusing on the Genesis GV60 SUV and its systems that use facial recognition and fingerprint scanners for vehicle access. The study examines hardware vulnerabilities, practical limitations, ethical concerns, and business implications to determine whether the technology represents genuine innovation or a technological gimmick. I completed this report as part of my business information system security module.',
+                            'This report is from a business information systems security (BISS) perspective and analyses the risks and benefits of implementing completely keyless car technology, specifically focusing on the Genesis GV60 SUV and its systems that use facial recognition and fingerprint scanners for vehicle access. The study examines hardware vulnerabilities, practical limitations, ethical concerns, and business implications to determine whether the technology represents genuine innovation or a technological gimmick. I completed this report as part of my Business Information System Security module.',
                             style: TextStyle(fontSize: 16, color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
@@ -304,7 +304,7 @@ showMenu(
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
-                            'This study is on the Portsmouth City Council website (portsmouth.gov.uk) and its usability. I chose usability goals and evaluated if/how the website achieves them. This study focuses on collecting raw data from real peoples controlled experience on the website. The study was completed by 12 subjects. The results have been analysed with visual representations and statistics with their implications determined. I completed this study for my usability testing module.',
+                            'This study is on the Portsmouth City Council website (portsmouth.gov.uk) and its usability. I chose usability goals and evaluated if/how the website achieves them. This study focuses on collecting raw data from real peoples controlled experience on the website. The study was completed by 10 subjects. The results have been analysed with visual representations and statistics with their implications determined. I completed this study for my Usability Testing module.',
                             style: TextStyle(fontSize: 16, color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
@@ -366,7 +366,7 @@ showMenu(
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
-                            'This report examines communication systems in hospital networks, specifically analyzing why they continue using outdated technology like pagers and fax machines despite government bans. The study compares traditional communication methods against modern smart devices, evaluating factors including security, usability, quality of service, costs, implementation challenges, reliability, and fault tolerance. I completed this report as part of my advanced networks module.',
+                            'This report examines communication systems in hospital networks, specifically analyzing why they continue using outdated technology like pagers and fax machines despite government bans. The study compares traditional communication methods against modern smart devices, evaluating factors including security, usability, quality of service, costs, implementation challenges, reliability, and fault tolerance. I completed this report as part of my Advanced Networks module.',
                             style: TextStyle(fontSize: 16, color: Colors.black),
                             textAlign: TextAlign.center,
                           ),

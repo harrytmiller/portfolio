@@ -665,7 +665,7 @@ class _AIState extends State<AI> {
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                           child: Text(
-                           'This page documents coursework completed for my Artificial Intelligence module. Working as a group of 4, we developed 4 AI applications using python. Each application scenario had set requirements of what it should do. Parts A and B are genetic algorithms and parts C and D neural networks. All applications include visual representations using matplotlib to show results. All applications run through terminal with interactive prompts allowing users to adjust parameters. Click the buttons below to view the python files with the option to download or copy code. There are also screenshots of the requirements, terminal output, and visual output.',
+                           'This page documents coursework completed for my Artificial Intelligence module. Working as a group of 4, we developed 4 AI applications using Python. Each application scenario had set requirements of what it should do. Parts A and B are genetic algorithms and parts C and D are neural networks. All applications include visual representations using Matplotlib to show results. All applications run through terminal with interactive prompts allowing users to adjust parameters. Click the buttons below to view the Python files with the option to download or copy code. There are also screenshots of the requirements, terminal output, and visual output.',
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.black,

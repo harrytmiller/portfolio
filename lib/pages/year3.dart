@@ -137,7 +137,7 @@ showMenu(
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
-                            'This page showcases my university dissertation. I created a math app that randomly generates questions based on the national curriculum. I programmed the app predominantly with flutter/dart with a firebase backend.',
+                            'This page showcases my university dissertation. I created a math app that randomly generates questions based on the national curriculum. I programmed the app predominantly with Flutter/Dart with a Firebase backend.',
                             style: TextStyle(fontSize: 16, color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
@@ -216,7 +216,7 @@ showMenu(
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
-                            'This page documents coursework completed for my Artificial Intelligence module. Working as a group of 4, we developed 4 AI applications using python. Each application scenario had set requirements of what it should do.',
+                            'This page documents coursework completed for my Artificial Intelligence module. Working as a group of 4, we developed 4 AI applications using Python. Each application scenario had set requirements of what it should do.',
                             style: TextStyle(fontSize: 16, color: Colors.black),
                             textAlign: TextAlign.center,
                           ),

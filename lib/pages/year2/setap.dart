@@ -214,7 +214,7 @@ class _SetupState extends State<Setup> {
                         
 
                                                    Text(
-                                'This page showcases my software engineering theory and practice project completed as one of my university courseworks. For the planning of this project I worked in a group of 6 however one of our teammates did not participate in implementation, testing or review so for these parts we were a group of 5. We first chose the topic of sustainability then decided to make a recipe app. The app would generate recipes that use the ingredients that users enter. The purpose of the app is to reduce wastage by helping users to use the ingredients they have. We named the app Waste Away. We collaborated on the app using a github repository. The app was programmed on flutter/dart with a firebase backend. The recipe generation process uses an API from edamam, and takes ingredients as input and gives recipes as output. User information is stored on firebase including account details and ingredients.',
+                                'This page showcases my software engineering theory and practice project completed as one of my university courseworks. For the planning of this project I worked in a group of 6 however one of our teammates did not participate in implementation, testing or review so for these parts we were a group of 5. We first chose the topic of sustainability then decided to make a recipe app. The app would generate recipes that use the ingredients that users enter. The purpose of the app is to reduce wastage by helping users to use the ingredients they have. We named the app Waste Away. We collaborated on the app using a Github repository. The app was programmed using Flutter/Dart with a Firebase backend. The recipe generation process uses an API from Edamam, and takes ingredients as input and gives recipes as output. User information is stored on Firebase including account details and ingredients.',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -226,7 +226,7 @@ class _SetupState extends State<Setup> {
                               
                               
                               Text(
-                               'I altered the application by myself after submission before adding it to my portfolio. I improved the recipe generation algorithm. Before my changes it generated 5 recipes but I changed it to generate 8. Before it would only generate recipes that use every ingredient the user has, my changes allowed it to generate recipes with as many ingredients as possible. It will try combinations of all the ingredients, all ingredients - 1 ingredient so on. The recipe generation API was also expired so I had to get a new one. I also changed the firebase API and added a .env file so as not to post my API keys online. I also removed features that I did not think should be included: ability for users to add their own faqs, and ability for users to add their own recipes (as these recipes were not used in the recipe generation algorithm).',
+                               'I altered the application by myself after submission before adding it to my portfolio. I improved the recipe generation algorithm. Before my changes it generated 5 recipes but I changed it to generate 8. Before it would only generate recipes that use every ingredient the user has, my changes allowed it to generate recipes with as many ingredients as possible. It will try combinations of all the ingredients, all ingredients - 1 ingredient so on. The recipe generation API was also expired so I had to get a new one. I also changed the firebase API. I also removed features that I did not think should be included: ability for users to add their own faqs, and ability for users to add their own recipes (as these recipes were not used in the recipe generation algorithm).',
                                style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -239,7 +239,7 @@ class _SetupState extends State<Setup> {
                         SizedBox(height: 12),
 
                               Text(
-                               'Below are screenshots of the application and a running prototype. The app was originally made to be a mobile app however the running prototype is a web app. The screenshots show both the mobile and web versions of the application. The screenshots of the mobile version were captured on a pixel 6 emulator with Android 10 as operating system.',
+                               'Below are screenshots of the application and a running prototype. The app was originally made to be a mobile app however the running prototype is a web app. The screenshots show both the mobile and web versions of the application. The screenshots of the mobile version were captured on a Pixel 6 emulator with Android 10 as operating system.',
                                style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,

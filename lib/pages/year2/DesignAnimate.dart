@@ -369,19 +369,19 @@ class _DesignState extends State<Design> {
                           child: Column(
                             children: [
                               Text(
-                                '-The \'View design write up\' button will open a pdf file that documents my design process in a new tab.',
+                                '-The \'View Design Write Up\' button will open a pdf file that documents my design process in a new tab.',
                                 style: TextStyle(fontSize: 16, color: Colors.black),
                                 textAlign: TextAlign.center,
                               ),
                               SizedBox(height: 12),
                               Text(
-                                '-The \'View animation write up\' button will open a pdf file that documents my animation process in a new tab.',
+                                '-The \'View Animation Write Up\' button will open a pdf file that documents my animation process in a new tab.',
                                 style: TextStyle(fontSize: 16, color: Colors.black),
                                 textAlign: TextAlign.center,
                               ),
                               SizedBox(height: 12),
                               Text(
-                                '-The \'Download submission folder\' button will download my submission folder. This folder contains: intermediate and final .max files, both animation and design write ups, supporting files, rederings, and screenshots of rigged model poses.',
+                                '-The \'Download Submission Folder\' button will download my submission folder. This folder contains: intermediate and final .max files, both animation and design write ups, supporting files, rederings, and screenshots of rigged model poses.',
                                 style: TextStyle(fontSize: 16, color: Colors.black),
                                 textAlign: TextAlign.center,
                               ),
