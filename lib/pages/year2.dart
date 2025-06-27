@@ -109,7 +109,7 @@ showMenu(
                       children: [
                         Text(
                           '3D Design and Animation',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
                         ),
                         SizedBox(height: 20),
                         
@@ -194,7 +194,7 @@ showMenu(
                       children: [
                         Text(
                           'Software Engineering',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
                         ),
                         SizedBox(height: 20),
                         
@@ -279,7 +279,7 @@ showMenu(
                       children: [
                         Text(
                           'My First App',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold,),
                         ),
                         SizedBox(height: 20),
                         

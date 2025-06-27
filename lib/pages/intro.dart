@@ -152,7 +152,6 @@ class _IntroState extends State<Intro> {
                   fontSize: 24,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
-                  decoration: TextDecoration.underline,
                 ),
               ),
             ),
@@ -207,59 +206,8 @@ class _IntroState extends State<Intro> {
               children: [
                 SizedBox(height: 30),
 
-                // Portfolio Introduction Container
-                _buildContainer(
-                  title: 'Portfolio Introduction',
-                  children: [
-                    Text(
-                      'This portfolio serves to showcase projects I have completed during and after my university studies. ',
-                      style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
-                      textAlign: TextAlign.left,
-                    ),
-                    SizedBox(height: 12),
-                    Text(
-                      'Portfolio Structure',
-                      style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w600),
-                    ),
-                    SizedBox(height: 12),
-                    Text(
-                      '• Introduction: Portfolio Introduction, Personal Introduction, Curriculum Vitae and Grade Breakdown',
-                      style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
-                    ),
-                    SizedBox(height: 6),
-                    Text(
-                      '• Year 2: Projects and coursework completed during my second year at university\n'
-                      '       -3D Design and Animation: Modelling and animation showcase page, including video and picture renders\n'
-                      '       -Software Engineering: Recipe generation app showcase page, including screenshots and running prototype\n'
-                      '       -My First App: Movie recommender app showcase page, including screenshots and running prototype',
-                      style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
-                    ),                    
-                    SizedBox(height: 6),
-                    Text(
-                      '• Year 3: Projects and coursework completed during my final year at university\n'
-                      '       -Dissertaion: Math app showcase page, including screenshots and running prototype\n'
-                      '       -Artificial Intelligence: Genetic algorithm and neural networks showcase page, including Python coad and output screenshots',
-                      style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
-                    ),                    
-                    SizedBox(height: 6),
-                    Text(
-                      '• Reports: Academic reports and research studies completed during my time at university (these reports dont have dedicated pages but there are buttons to view pdfs)',
-                      style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
-                    ),
-                    SizedBox(height: 16),
-                    Text(
-                      'Navigation',
-                      style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w600),
-                    ),
-                    SizedBox(height: 8),
-                    Text(
-                      'Use the dropdown menu in the top-left corner or quick navigation at the bottom of pages to navigate between sections (if a project is open you must navigate back before changing section).',
-                      style: TextStyle(fontSize: 16, color: Colors.black),
-                    ),
-                  ],
-                ),
 
-                // Personal Introduction Container
+               // Personal Introduction Container
                 _buildContainer(
                   title: 'Personal Introduction',
                   children: [
@@ -339,6 +287,61 @@ class _IntroState extends State<Intro> {
                   ],
                 ),
 
+
+                // Portfolio Introduction Container
+                _buildContainer(
+                  title: 'Portfolio Introduction',
+                  children: [
+                    Text(
+                      'This portfolio serves to showcase projects I have completed during and after my university studies. ',
+                      style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
+                      textAlign: TextAlign.left,
+                    ),
+                    SizedBox(height: 12),
+                    Text(
+                      'Portfolio Structure',
+                      style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(height: 12),
+                    Text(
+                      '• Introduction: Personal Introduction, Portfolio Introduction, Curriculum Vitae and Grade Breakdown',
+                      style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
+                    ),
+                    SizedBox(height: 6),
+                    Text(
+                      '• Year 2: Projects and coursework completed during my second year at university\n'
+                      '       -3D Design and Animation: Modelling and animation showcase page, including video and picture renders\n'
+                      '       -Software Engineering: Recipe generation app showcase page, including screenshots and running prototype\n'
+                      '       -My First App: Movie recommender app showcase page, including screenshots and running prototype',
+                      style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
+                    ),                    
+                    SizedBox(height: 6),
+                    Text(
+                      '• Year 3: Projects and coursework completed during my final year at university\n'
+                      '       -Dissertaion: Math app showcase page, including screenshots and running prototype\n'
+                      '       -Artificial Intelligence: Genetic algorithm and neural networks showcase page, including Python coad and output screenshots',
+                      style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
+                    ),                    
+                    SizedBox(height: 6),
+                    Text(
+                      '• Reports: Academic reports and research studies completed during my time at university (these reports dont have dedicated pages but there are buttons to view pdfs)',
+                      style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
+                    ),
+                    SizedBox(height: 16),
+                    Text(
+                      'Navigation',
+                      style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      'Use the dropdown menu in the top-left corner or quick navigation at the bottom of pages to navigate between sections (if a project is open you must navigate back before changing section).',
+                      style: TextStyle(fontSize: 16, color: Colors.black),
+                    ),
+                  ],
+                ),
+
+ 
+
                 // Curriculum Vitae Container
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
@@ -368,7 +371,7 @@ class _IntroState extends State<Intro> {
                             fontSize: 24,
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.underline,
+                            
                           ),
                         ),
                       ),

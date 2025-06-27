@@ -136,7 +136,7 @@ class _AppState extends State<App> {
                             fontSize: 22,
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.underline),
+                            ),
                       ),
                       SizedBox(height: 16),
                       
@@ -201,7 +201,7 @@ class _AppState extends State<App> {
                             fontSize: 22,
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.underline),
+                            ),
                       ),
                       SizedBox(height: 16),
                       

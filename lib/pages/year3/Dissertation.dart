@@ -198,7 +198,7 @@ class _DissertationState extends State<Dissertation> {
                               fontSize: 22,
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.underline),
+                              ),
                         ),
                         SizedBox(height: 16),
                         
@@ -272,7 +272,7 @@ class _DissertationState extends State<Dissertation> {
                               fontSize: 22,
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.underline),
+                              ),
                         ),
                         SizedBox(height: 16),
                         

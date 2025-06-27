@@ -244,7 +244,7 @@ class _DesignState extends State<Design> {
                               fontSize: 22,
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.underline),
+                              ),
                         ),
                                                 SizedBox(height: 16),
 
@@ -318,7 +318,7 @@ class _DesignState extends State<Design> {
                               fontSize: 22,
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.underline),
+                              ),
                         ),
                                                       SizedBox(height: 16),
 
@@ -360,7 +360,7 @@ class _DesignState extends State<Design> {
                               fontSize: 22,
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.underline),
+                              ),
                         ),
                         SizedBox(height: 16),
                         

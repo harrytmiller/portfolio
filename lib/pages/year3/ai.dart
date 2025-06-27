@@ -656,7 +656,7 @@ class _AIState extends State<AI> {
                               fontSize: 22,
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.underline),
+                              ),
                                                     textAlign: TextAlign.center,
 
                         ),
@@ -726,7 +726,7 @@ class _AIState extends State<AI> {
                               fontSize: 22,
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.underline),
+                              ),
                         ),
                         SizedBox(height: 16),
                         

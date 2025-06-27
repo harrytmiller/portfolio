@@ -171,7 +171,7 @@ showMenu(
                           child: Text(
                             'Year 2 Usability Study with Redesign',
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                            style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
                           ),
                         ),
                         SizedBox(height: 16),
@@ -233,7 +233,7 @@ showMenu(
                           child: Text(
                             'Year 2 Security Report',
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                            style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
                           ),
                         ),
                         SizedBox(height: 16),
@@ -295,7 +295,7 @@ showMenu(
                           child: Text(
                             'Year 3 Usability Study',
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                            style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
                           ),
                         ),
                         SizedBox(height: 16),
@@ -357,7 +357,7 @@ showMenu(
                           child: Text(
                             'Year 3 Networks Report',
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                            style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold,),
                           ),
                         ),
                         SizedBox(height: 16),

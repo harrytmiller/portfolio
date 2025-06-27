@@ -110,7 +110,7 @@ showMenu(
                       children: [
                         Text(
                           'Dissertation',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold,),
                         ),
                         SizedBox(height: 20),
                         
@@ -188,7 +188,7 @@ showMenu(
                       children: [
                         Text(
                           'Artificial Intelligence',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
                         ),
                         SizedBox(height: 20),
                         
