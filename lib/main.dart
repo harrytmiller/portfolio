@@ -9,6 +9,9 @@ import 'package:portfolio/pages/year3/Dissertation.dart'; // Add your dissertati
 import 'package:portfolio/pages/year2/setap.dart'; // Add Setup page import
 import 'package:portfolio/pages/year2/app.dart'; // Add App page import
 import 'package:portfolio/pages/year3/ai.dart'; // Add App page import
+import 'package:portfolio/pages/postUni/ai_image_gen.dart'; // Add AI Image Generator page
+import 'package:portfolio/pages/postUni/ai_model_gen.dart';
+
 
 
 void main() async {
@@ -24,20 +27,22 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Project',
-      initialRoute: '/Intro', 
-
+      initialRoute: '/',
+      
       routes: {
-        '/': (context) => Intro(), 
+        '/': (context) => Intro(),
         '/Intro': (context) => Intro(), // Added explicit intro route
         '/Y2': (context) => Y2(),
-        '/Y3': (context) => Y3(), 
+        '/Y3': (context) => Y3(),
         '/PostUni': (context) => PostUni(),
         '/WriteUps': (context) => WriteUps(),
-        '/Design': (context) => Design(), 
+        '/Design': (context) => Design(),
         '/Dissertation': (context) => Dissertation(), // Add dissertation route
         '/Setup': (context) => Setup(), // Add Setup route
         '/App': (context) => App(), // Add App route
         '/Ai': (context) => AI(), // Add App route
+        '/AiImageGen': (context) => AiImageGen(), // Add AI Image Generator route
+        '/AiModelGen': (context) => ModelPage(), // Add AI Model Generator route - using correct class name
       },
     );
   }

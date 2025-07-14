@@ -6,6 +6,65 @@ class PostUni extends StatefulWidget {
 }
 
 class _PostUniState extends State<PostUni> {
+  final GlobalKey _menuKey = GlobalKey();
+  bool _isMenuOpen = false;
+  
+  // Scroll controller for custom scrollbar
+  final ScrollController _scrollController = ScrollController();
+
+  void _onMenuSelect(BuildContext context, String page) {
+    setState(() {
+      _isMenuOpen = false;
+    });
+    Navigator.pushNamed(context, page);
+  }
+
+  void _toggleMenu() {
+    if (_isMenuOpen) {
+      Navigator.pop(context);
+      setState(() {
+        _isMenuOpen = false;
+      });
+    } else {
+      final RenderBox renderBox = _menuKey.currentContext!.findRenderObject() as RenderBox;
+      final position = renderBox.localToGlobal(Offset.zero);
+      
+showMenu(
+  context: context,
+  color: const Color.fromARGB(255, 169, 169, 169),
+  position: RelativeRect.fromLTRB(
+    position.dx,
+    position.dy + renderBox.size.height + 8,
+    position.dx + renderBox.size.width,
+    position.dy + renderBox.size.height + 8,
+  ),
+  items: [
+    PopupMenuItem(value: '/Intro', child: Text('Introduction', style: TextStyle(color: Colors.black))),
+    PopupMenuItem(value: '/Y2', child: Text('Year 2', style: TextStyle(color: Colors.black))),
+    PopupMenuItem(value: '/Y3', child: Text('Year 3', style: TextStyle(color: Colors.black))),
+    PopupMenuItem(value: '/WriteUps', child: Text('Reports', style: TextStyle(color: Colors.black))),
+  ],
+).then((value) {
+        setState(() {
+          _isMenuOpen = false;
+        });
+        if (value != null) {
+          _onMenuSelect(context, value);
+        }
+      });
+      
+      setState(() {
+        _isMenuOpen = true;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,182 +72,337 @@ class _PostUniState extends State<PostUni> {
         title: Text('Post Uni', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
         backgroundColor: const Color.fromARGB(255, 169, 169, 169),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
+          key: _menuKey,
+          icon: Icon(Icons.menu, color: Colors.black),
+          onPressed: _toggleMenu,
         ),
       ),
       backgroundColor: Colors.grey[800],
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              SizedBox(height: 50),
+      body: RawScrollbar(
+        controller: _scrollController,
+        thumbVisibility: true,
+        trackVisibility: true,
+        thickness: 8.0,
+        radius: Radius.circular(6),
+        interactive: true,
+        thumbColor: Colors.grey.shade700,
+        trackColor: const Color.fromARGB(255, 169, 169, 169),
+        trackRadius: Radius.circular(6),
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(height: 50),
 
-              Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                margin: EdgeInsets.symmetric(vertical: 20),
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 169, 169, 169),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Professional Machine Learning Implementation',
-                        style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
-                      ),
-                      SizedBox(height: 30),
-                      
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(width: 16), // Left spacing for text
-                          Expanded(
-                            flex: 2,
-                            child: Text(
-                              'This comprehensive professional project involved the development and deployment of a machine learning system for a Fortune 500 company, focusing on predictive analytics for supply chain optimization. Working as part of a cross-functional team, I designed and implemented neural network architectures using TensorFlow and PyTorch, processing over 10 million data points to identify patterns in inventory management and demand forecasting. The system achieved a 94% accuracy rate in predicting supply chain disruptions, resulting in cost savings of approximately \$2.3 million annually for the client. The project required extensive data preprocessing, feature engineering, and model validation across multiple business units. I also developed a real-time dashboard using React and D3.js that allows stakeholders to visualize predictions and adjust parameters dynamically. The implementation included robust error handling, automated model retraining pipelines, and comprehensive documentation for future maintenance. This project demonstrated the practical application of advanced machine learning techniques in enterprise environments and showcased my ability to translate complex algorithms into business value.',
-                              style: TextStyle(fontSize: 16, color: Colors.black),
-                              textAlign: TextAlign.left,
-                            ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 169, 169, 169),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Portfolio',
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold,),
+                        ),
+                        SizedBox(height: 10),
+                        
+                        // Text content only
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            'This portfolio was the first project I completed after finishing my degree, however It didn\'t seem necessary to give it a dedicated page.',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                            textAlign: TextAlign.center,
                           ),
-                          SizedBox(width: 16),
-                          Container(
-                            width: 450,
-                            height: 300,
+                        ),
+                                                SizedBox(height: 10),
+
+                      ],
+                    ),
+                  ),
+                ),
+
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 169, 169, 169),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AI Image Generator',
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
+                        ),
+                        SizedBox(height: 20),
+                        
+                        // Centered Image
+                        Center(
+                          child: Container(
+                            width: 575,
+                            height: 350,
                             decoration: BoxDecoration(
-                              color: Colors.white,
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: Center(
-                              child: Text(
-                                'Image',
-                                style: TextStyle(fontSize: 16, color: Colors.grey),
-                              ),
+                            clipBehavior: Clip.hardEdge,
+                            child: Image.asset(
+                              'assets/images/85.png', // Replace with your actual image path
+                              height: 300,
+                              fit: BoxFit.fitHeight,
                             ),
-                          ),
-                          SizedBox(width: 16), // Right spacing for image
-                        ],
-                      ),
-                      
-                      SizedBox(height: 30),
-                      
-                      Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.only(top: 0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('Download started!')),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
-                            padding: EdgeInsets.symmetric(vertical: 15),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(12),
-                                bottomRight: Radius.circular(12),
-                              ),
-                            ),
-                          ),
-                          child: Text(
-                            'Download File',
-                            style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
                           ),
                         ),
-                      ),
-                    ],
+                        
+                        SizedBox(height: 20),
+                        
+                        // Text below image
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            'An AI image generation application that creates images from text prompts. Built using modern AI models and integrated with a user-friendly interface.',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        
+                        SizedBox(height: 20),
+                        
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.only(top: 0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/AiImageGen');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'Open Project',
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
 
-              Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                margin: EdgeInsets.symmetric(vertical: 20),
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 169, 169, 169),
-                  borderRadius: BorderRadius.circular(12),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 169, 169, 169),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AI Model Generator',
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
+                        ),
+                        SizedBox(height: 20),
+                        
+                        // Centered Image
+                        Center(
+                          child: Container(
+                            width: 575,
+                            height: 350,
+                            decoration: BoxDecoration(
+                              color: Colors.white, // Add white background
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            clipBehavior: Clip.hardEdge,
+                            child: Image.asset(
+                              'assets/images/82.png',
+                              height: 300,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                        
+                        SizedBox(height: 20),
+                        
+                        // Text below image
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            'An AI 3D model generation application that creates models from text prompts or images. Built using modern AI models and integrated with a user-friendly interface.',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        
+                        SizedBox(height: 20),
+                        
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.only(top: 0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/AiModelGen');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'Open Project',
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+
+                // Navigation Buttons
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: EdgeInsets.symmetric(vertical: 20),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        'More Works Coming Soon',
-                        style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
+                      Center(
+                        child: Text(
+                          'Quick Navigation',
+                          style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
                       ),
-                      SizedBox(height: 30),
-                      
+                      SizedBox(height: 16),
                       Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(width: 16), // Left spacing for text
                           Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.construction,
-                                  size: 80,
-                                  color: Colors.black54,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/Intro');
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blue,
+                                padding: EdgeInsets.symmetric(vertical: 15),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
-                                SizedBox(height: 30),
-                                Text(
-                                  'This section is currently under development as I continue to work on exciting new projects in my professional career. Check back soon for updates on my latest accomplishments, research contributions, and professional milestones. I am actively working on several innovative projects that will be showcased here once completed.',
-                                  style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w500),
-                                  textAlign: TextAlign.center,
+                              ),
+                              child: Text(
+                                'Introduction',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                SizedBox(height: 20),
-                                Text(
-                                  'Stay tuned for more content!',
-                                  style: TextStyle(fontSize: 16, color: Colors.black54, fontStyle: FontStyle.italic),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(width: 16), // Right spacing
-                        ],
-                      ),
-                      
-                      SizedBox(height: 30),
-                      
-                      Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.only(top: 0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('No files available yet - check back soon!')),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.grey,
-                            padding: EdgeInsets.symmetric(vertical: 15),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(12),
-                                bottomRight: Radius.circular(12),
                               ),
                             ),
                           ),
-                          child: Text(
-                            'Coming Soon',
-                            style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                          SizedBox(width: 12),
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/Y2');
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blue,
+                                padding: EdgeInsets.symmetric(vertical: 15),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              child: Text(
+                                'Year 2',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
+                      ),
+                      SizedBox(height: 12),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/Y3');
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blue,
+                                padding: EdgeInsets.symmetric(vertical: 15),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              child: Text(
+                                'Year 3',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 12),
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/WriteUps');
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blue,
+                                padding: EdgeInsets.symmetric(vertical: 15),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              child: Text(
+                                'Reports',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
-              ),
 
-              SizedBox(height: 50),
-            ],
+                SizedBox(height: 50),
+              ],
+            ),
           ),
         ),
       ),

@@ -41,7 +41,7 @@ showMenu(
   items: [
     PopupMenuItem(value: '/Intro', child: Text('Introduction', style: TextStyle(color: Colors.black))),
     PopupMenuItem(value: '/Y2', child: Text('Year 2', style: TextStyle(color: Colors.black))),
-    //PopupMenuItem(value: '/PostUni', child: Text('Post Uni', style: TextStyle(color: Colors.black))),
+    PopupMenuItem(value: '/PostUni', child: Text('Post Uni', style: TextStyle(color: Colors.black))),
     PopupMenuItem(value: '/WriteUps', child: Text('Reports', style: TextStyle(color: Colors.black))),
   ],
 ).then((value) {
@@ -317,9 +317,30 @@ showMenu(
                       SizedBox(height: 12),
                       Row(
                         children: [
-                          Expanded(flex: 1, child: Container()), // Left spacer
                           Expanded(
-                            flex: 2,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/PostUni');
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blue,
+                                padding: EdgeInsets.symmetric(vertical: 15),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              child: Text(
+                                'Post Uni',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 12),
+                          Expanded(
                             child: ElevatedButton(
                               onPressed: () {
                                 Navigator.pushNamed(context, '/WriteUps');
@@ -341,7 +362,6 @@ showMenu(
                               ),
                             ),
                           ),
-                          Expanded(flex: 1, child: Container()), // Right spacer
                         ],
                       ),
                     ],

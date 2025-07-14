@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:typed_data';
 import 'dart:html' as html;
+import 'package:url_launcher/url_launcher.dart';
 
 class Intro extends StatefulWidget {
   @override
@@ -44,6 +45,7 @@ class _IntroState extends State<Intro> {
         items: [
           PopupMenuItem(value: '/Y2', child: Text('Year 2', style: TextStyle(color: Colors.black))),
           PopupMenuItem(value: '/Y3', child: Text('Year 3', style: TextStyle(color: Colors.black))),
+          PopupMenuItem(value: '/PostUni', child: Text('Post Uni', style: TextStyle(color: Colors.black))),
           PopupMenuItem(value: '/WriteUps', child: Text('Reports', style: TextStyle(color: Colors.black))),
         ],
       ).then((value) {
@@ -114,6 +116,13 @@ class _IntroState extends State<Intro> {
           );
         },
       );
+    }
+  }
+
+  void _openGitHub() async {
+    final Uri url = Uri.parse('https://github.com/harrytmiller');
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
     }
   }
 
@@ -218,7 +227,7 @@ class _IntroState extends State<Intro> {
                     ),
                     SizedBox(height: 12),
                     Text(
-                      'My degree is broad and covers different topics such as: usability, user interface design, security, software engineering, 3D design and animation, artificial intelligence, networks and databases (some of which are covered in this portfolio). I have coded with Python, Flutter/Dart, Sql and some Java. I have made multiple applications, the most relevant of which are accessible through this portfolio. It has been a goal of mine to achieve as highly as I am capable of at university. This includes both learning and understanding academic knowledge to score highly in exams, and applying what I know to produce high quality courseworks.',
+                      'My degree is broad and covers different topics such as: usability, user interface design, security, software engineering, 3D design and animation, artificial intelligence, networks and databases (some of which are covered in this portfolio). I can use programming languages: Python,  Java, TypeScript, Dart, and PostgreSql. I have made multiple applications, the most relevant of which are accessible through this portfolio. It has been a goal of mine to achieve as highly as I am capable of at university. This includes both learning and understanding academic knowledge to score highly in exams, and applying what I know to produce high quality courseworks.',
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
                       textAlign: TextAlign.left,
                     ),
@@ -292,9 +301,32 @@ class _IntroState extends State<Intro> {
                 _buildContainer(
                   title: 'Portfolio Introduction',
                   children: [
-                    Text(
-                      'This portfolio serves to showcase projects I have completed during and after my university studies. ',
-                      style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
+                    RichText(
+                      text: TextSpan(
+                        style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
+                        children: [
+                          TextSpan(text: 'This portfolio serves to showcase projects I have completed during and after my university studies. You can better view the code for my larger projects at '),
+                          WidgetSpan(
+                            child: MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                onTap: _openGitHub,
+                                child: Text(
+                                  'github.com/harrytmiller',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.blue[800],
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: Colors.blue[800],
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          TextSpan(text: '.'),
+                        ],
+                      ),
                       textAlign: TextAlign.left,
                     ),
                     SizedBox(height: 12),
@@ -319,9 +351,17 @@ class _IntroState extends State<Intro> {
                     Text(
                       '• Year 3: Projects and coursework completed during my final year at university\n'
                       '       -Dissertaion: Math app showcase page, including screenshots and running prototype\n'
-                      '       -Artificial Intelligence: Genetic algorithm and neural networks showcase page, including Python coad and output screenshots',
+                      '       -Artificial Intelligence: Genetic algorithm and neural networks showcase page, including Python code and output screenshots',
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
                     ),                    
+                    SizedBox(height: 6),
+                    Text(
+                      '• Post Uni: Projects completed after graduation\n'
+                      '       -Portfolio: This portfolio website\n'
+                      '       -AI Image Generator: An AI image generation application that creates images from text prompts\n'
+                      '       -AI Model Generator: An AI model generation application that creates models from text prompts or images',
+                      style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
+                    ),
                     SizedBox(height: 6),
                     Text(
                       '• Reports: Academic reports and research studies completed during my time at university (these reports dont have dedicated pages but there are buttons to view pdfs)',
@@ -438,7 +478,7 @@ class _IntroState extends State<Intro> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Overall GPA:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                              Text('3.99', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                              Text('4.00', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                             ],
                           ),
                           SizedBox(height: 8),
@@ -671,9 +711,30 @@ class _IntroState extends State<Intro> {
                       SizedBox(height: 12),
                       Row(
                         children: [
-                          Expanded(flex: 1, child: Container()), // Left spacer
                           Expanded(
-                            flex: 2,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/PostUni');
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blue,
+                                padding: EdgeInsets.symmetric(vertical: 15),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              child: Text(
+                                'Post Uni',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 12),
+                          Expanded(
                             child: ElevatedButton(
                               onPressed: () {
                                 Navigator.pushNamed(context, '/WriteUps');
@@ -695,7 +756,6 @@ class _IntroState extends State<Intro> {
                               ),
                             ),
                           ),
-                          Expanded(flex: 1, child: Container()), // Right spacer
                         ],
                       ),
                     ],
