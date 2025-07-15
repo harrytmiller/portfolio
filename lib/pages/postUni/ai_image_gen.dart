@@ -164,7 +164,6 @@ class _AiImageGenState extends State<AiImageGen> {
                       SizedBox(height: 16),
 
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
                         child: GestureDetector(
                           onTap: () => _launchURL('https://github.com/harrytmiller/PictureModelGen'),
                           child: Text(

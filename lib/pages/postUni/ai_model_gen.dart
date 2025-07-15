@@ -20,11 +20,43 @@ class _ModelPageState extends State<ModelPage> {
   int _minThumbnailsPerPage = 3;
   bool _hasRenderFlex = false;
   
+  // Model viewer state
+  int _currentModelIndex = 0;
+  int _modelThumbnailStartIndex = 0;
+  int _modelThumbnailsPerPage = 4;
+  int _maxModelThumbnailsPerPage = 3;
+  int _minModelThumbnailsPerPage = 3;
+  bool _hasModelRenderFlex = false;
+  
   List<String> _imagePaths = [
     'assets/images/ai_model_1.png',
     'assets/images/ai_model_2.png',
     'assets/images/ai_model_3.png',
     'assets/images/ai_model_4.png',
+  ];
+
+  // Model data with names and preview images
+  List<Map<String, String>> _modelData = [
+    {
+      'name': 'Spaceship Model',
+      'preview': 'assets/images/ai_model_1.png',
+      'file': 'assets/models/spaceship.obj'
+    },
+    {
+      'name': 'Robot Character',
+      'preview': 'assets/images/ai_model_2.png',
+      'file': 'assets/models/robot.obj'
+    },
+    {
+      'name': 'Fantasy Castle',
+      'preview': 'assets/images/ai_model_3.png',
+      'file': 'assets/models/castle.obj'
+    },
+    {
+      'name': 'Abstract Sculpture',
+      'preview': 'assets/images/ai_model_4.png',
+      'file': 'assets/models/sculpture.obj'
+    },
   ];
 
   void _launchURL(String url) {
@@ -42,6 +74,7 @@ class _ModelPageState extends State<ModelPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _checkLayoutSpace();
+      _checkModelLayoutSpace();
     });
   }
 
@@ -52,6 +85,18 @@ class _ModelPageState extends State<ModelPage> {
         _hasRenderFlex = true;
         if (_thumbnailStartIndex + _thumbnailsPerPage > _imagePaths.length) {
           _thumbnailStartIndex = (_imagePaths.length - _thumbnailsPerPage).clamp(0, _imagePaths.length - 1);
+        }
+      });
+    }
+  }
+
+  void _handleModelRenderFlexOverflow() {
+    if (_modelThumbnailsPerPage > _minModelThumbnailsPerPage) {
+      setState(() {
+        _modelThumbnailsPerPage--;
+        _hasModelRenderFlex = true;
+        if (_modelThumbnailStartIndex + _modelThumbnailsPerPage > _modelData.length) {
+          _modelThumbnailStartIndex = (_modelData.length - _modelThumbnailsPerPage).clamp(0, _modelData.length - 1);
         }
       });
     }
@@ -77,6 +122,26 @@ class _ModelPageState extends State<ModelPage> {
     });
   }
 
+  void _checkModelLayoutSpace() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_hasModelRenderFlex && _modelThumbnailsPerPage < _maxModelThumbnailsPerPage) {
+        final screenWidth = MediaQuery.of(context).size.width;
+        final availableWidth = screenWidth * 0.9 - 80;
+        final thumbnailWidth = 92.0;
+        final maxFittable = (availableWidth / thumbnailWidth).floor();
+        
+        if (maxFittable > _modelThumbnailsPerPage && _modelThumbnailsPerPage < _maxModelThumbnailsPerPage) {
+          setState(() {
+            _modelThumbnailsPerPage = (maxFittable).clamp(_minModelThumbnailsPerPage, _maxModelThumbnailsPerPage);
+            if (_modelThumbnailsPerPage == _maxModelThumbnailsPerPage) {
+              _hasModelRenderFlex = false;
+            }
+          });
+        }
+      }
+    });
+  }
+
   // Helper method to determine BoxFit for specific images
   BoxFit _getImageFit(int imageIndex) {
     // Adjust this based on your specific image requirements
@@ -85,7 +150,10 @@ class _ModelPageState extends State<ModelPage> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) => _checkLayoutSpace());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkLayoutSpace();
+      _checkModelLayoutSpace();
+    });
     
     return Scaffold(
       appBar: AppBar(
@@ -173,7 +241,6 @@ class _ModelPageState extends State<ModelPage> {
                       SizedBox(height: 16),
 
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
                         child: GestureDetector(
                           onTap: () => _launchURL('https://github.com/harrytmiller/PictureModelGen'),
                           child: Text(
@@ -233,7 +300,7 @@ class _ModelPageState extends State<ModelPage> {
                       ),
                       SizedBox(height: 30),
                       
-                      // 3D Model Viewer (moved here)
+                      // 3D Model Viewer with selector
                       _buildModelViewer(),
                     ],
                   ),
@@ -358,7 +425,10 @@ class _ModelPageState extends State<ModelPage> {
   }
 
   Widget _buildModelViewer() {
-    return Container(
+    return Column(
+      children: [
+        // Main Model Display
+        Container(
           width: 768,
           height: 432,
           decoration: BoxDecoration(
@@ -402,7 +472,7 @@ class _ModelPageState extends State<ModelPage> {
                         ),
                         SizedBox(height: 16),
                         Text(
-                          '3D Model Viewer',
+                          _modelData[_currentModelIndex]['name']!,
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -411,7 +481,7 @@ class _ModelPageState extends State<ModelPage> {
                         ),
                         SizedBox(height: 8),
                         Text(
-                          'Interactive 3D models would be displayed here',
+                          'Interactive 3D model viewer',
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.grey.shade600,
@@ -421,6 +491,75 @@ class _ModelPageState extends State<ModelPage> {
                     ),
                   ),
                 ),
+                
+                // Left Arrow
+                Positioned(
+                  left: 16,
+                  top: 0,
+                  bottom: 0,
+                  child: Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.7),
+                        shape: BoxShape.circle,
+                      ),
+                      child: IconButton(
+                        onPressed: _previousModel,
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.white,
+                          size: 24,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                
+                // Right Arrow
+                Positioned(
+                  right: 16,
+                  top: 0,
+                  bottom: 0,
+                  child: Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.7),
+                        shape: BoxShape.circle,
+                      ),
+                      child: IconButton(
+                        onPressed: _nextModel,
+                        icon: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.white,
+                          size: 24,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                
+                // Model Counter
+                Positioned(
+                  bottom: 16,
+                  right: 16,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.7),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Text(
+                      '${_currentModelIndex + 1} / ${_modelData.length}',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                
+                // WebGL Viewer Badge
                 Positioned(
                   top: 12,
                   right: 12,
@@ -446,7 +585,149 @@ class _ModelPageState extends State<ModelPage> {
               ],
             ),
           ),
-        );
+        ),
+        
+        SizedBox(height: 20),
+        
+        // Model Thumbnail Row with Navigation
+        Center(
+          child: Column(
+            children: [
+              Container(
+                height: 80,
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    final availableWidth = constraints.maxWidth - 80;
+                    final thumbnailWidth = 92.0;
+                    final maxFittable = (availableWidth / thumbnailWidth).floor();
+                    
+                    if (maxFittable < _modelThumbnailsPerPage && maxFittable >= _minModelThumbnailsPerPage) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        _handleModelRenderFlexOverflow();
+                      });
+                    }
+                    
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          onPressed: _modelThumbnailStartIndex > 0 ? _previousModelThumbnailPage : null,
+                          icon: Icon(
+                            Icons.arrow_back_ios,
+                            color: _modelThumbnailStartIndex > 0 ? Colors.black : Colors.grey,
+                            size: 20,
+                          ),
+                        ),
+                        
+                        Flexible(
+                          child: Container(
+                            width: _modelThumbnailsPerPage * 92.0,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: _getVisibleModelThumbnailCount(),
+                              itemBuilder: (context, index) {
+                                int actualIndex = _modelThumbnailStartIndex + index;
+                                bool isSelected = actualIndex == _currentModelIndex;
+                                return GestureDetector(
+                                  onTap: () => _selectModel(actualIndex),
+                                  child: Container(
+                                    width: 80,
+                                    height: 80,
+                                    margin: EdgeInsets.only(right: 12),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border.all(
+                                        color: isSelected ? Colors.blue : Colors.grey.shade300,
+                                        width: isSelected ? 3 : 1,
+                                      ),
+                                    ),
+                                    clipBehavior: Clip.hardEdge,
+                                    child: Stack(
+                                      children: [
+                                        Image.asset(
+                                          _modelData[actualIndex]['preview']!,
+                                          fit: BoxFit.cover,
+                                          width: double.infinity,
+                                          height: double.infinity,
+                                          errorBuilder: (context, error, stackTrace) {
+                                            return Center(
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.view_in_ar,
+                                                    size: 24,
+                                                    color: isSelected ? Colors.blue : Colors.grey.shade400,
+                                                  ),
+                                                  SizedBox(height: 4),
+                                                  Text(
+                                                    '${actualIndex + 1}',
+                                                    style: TextStyle(
+                                                      fontSize: 10,
+                                                      color: isSelected ? Colors.blue : Colors.grey.shade600,
+                                                      fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                        // 3D Model overlay icon
+                                        Positioned(
+                                          top: 4,
+                                          right: 4,
+                                          child: Container(
+                                            padding: EdgeInsets.all(2),
+                                            decoration: BoxDecoration(
+                                              color: Colors.black.withOpacity(0.7),
+                                              borderRadius: BorderRadius.circular(4),
+                                            ),
+                                            child: Icon(
+                                              Icons.threed_rotation,
+                                              color: Colors.white,
+                                              size: 12,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        
+                        IconButton(
+                          onPressed: _modelThumbnailStartIndex + _modelThumbnailsPerPage < _modelData.length ? _nextModelThumbnailPage : null,
+                          icon: Icon(
+                            Icons.arrow_forward_ios,
+                            color: _modelThumbnailStartIndex + _modelThumbnailsPerPage < _modelData.length ? Colors.black : Colors.grey,
+                            size: 20,
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ),
+              
+              SizedBox(height: 10),
+              
+              Text(
+                'Models ${_modelThumbnailStartIndex + 1}-${_modelThumbnailStartIndex + _getVisibleModelThumbnailCount()} of ${_modelData.length}',
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 
   Widget _buildImageGallery() {
@@ -700,6 +981,52 @@ class _ModelPageState extends State<ModelPage> {
     );
   }
 
+  // Model selector methods
+  void _selectModel(int index) {
+    setState(() {
+      _currentModelIndex = index;
+      _ensureModelThumbnailVisible(index);
+    });
+  }
+
+  void _nextModel() {
+    setState(() {
+      _currentModelIndex = (_currentModelIndex + 1) % _modelData.length;
+      _ensureModelThumbnailVisible(_currentModelIndex);
+    });
+  }
+
+  void _previousModel() {
+    setState(() {
+      _currentModelIndex = (_currentModelIndex - 1 + _modelData.length) % _modelData.length;
+      _ensureModelThumbnailVisible(_currentModelIndex);
+    });
+  }
+
+  void _nextModelThumbnailPage() {
+    setState(() {
+      _modelThumbnailStartIndex = (_modelThumbnailStartIndex + _modelThumbnailsPerPage).clamp(0, _modelData.length - _modelThumbnailsPerPage);
+    });
+  }
+
+  void _previousModelThumbnailPage() {
+    setState(() {
+      _modelThumbnailStartIndex = (_modelThumbnailStartIndex - _modelThumbnailsPerPage).clamp(0, _modelData.length - 1);
+    });
+  }
+
+  void _ensureModelThumbnailVisible(int modelIndex) {
+    if (modelIndex < _modelThumbnailStartIndex || modelIndex >= _modelThumbnailStartIndex + _modelThumbnailsPerPage) {
+      int targetPage = modelIndex ~/ _modelThumbnailsPerPage;
+      _modelThumbnailStartIndex = (targetPage * _modelThumbnailsPerPage).clamp(0, _modelData.length - _modelThumbnailsPerPage);
+    }
+  }
+
+  int _getVisibleModelThumbnailCount() {
+    return (_modelData.length - _modelThumbnailStartIndex).clamp(1, _modelThumbnailsPerPage);  
+  }
+
+  // Image selector methods
   void _selectImage(int index) {
     setState(() {
       _currentImageIndex = index;
