@@ -152,7 +152,7 @@ class _AiImageGenState extends State<AiImageGen> {
                       SizedBox(height: 12),
 
                         Text(
-                          'The application uses a microservices architecture where the React frontend communicates with the Spring Boot backend via RESTful APIs, enabled by CORS configuration that allows cross-origin requests between the services. When a user submits a text prompt, the frontend sends a POST request to /api/generate with the prompt data. The Spring Boot service enhances the prompt and makes a HTTP call to the Stable Diffusion running on localhost:7860/sdapi/v1/txt2img. The AI model processes the request and returns a Base64-encoded image, which the backend decodes, saves to the file system, and responds with an image URL. React state management then dynamically updates the gallery to include the newly generated image.',
+                          'The application uses a microservices architecture where the React frontend communicates with the Spring Boot backend via RESTful APIs, enabled by CORS configuration that allows cross-origin requests between the services. When a user submits a text prompt, the frontend sends a POST request to /api/generate with the prompt data. The Spring Boot service enhances the prompt and makes a HTTP call to Stable Diffusion running on localhost:7860/sdapi/v1/txt2img. The AI model processes the request and returns a Base64-encoded image, which the backend decodes, saves to the file system, and responds with an image URL. React state management then  updates the gallery to include the newly generated image.',
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.black,

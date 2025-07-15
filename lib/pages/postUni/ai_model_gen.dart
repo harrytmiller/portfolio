@@ -137,10 +137,8 @@ class _ModelPageState extends State<ModelPage> {
                       ),
                       SizedBox(height: 16),
                       
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-                        child: Text(
-                          'This is a sophisticated AI model generation application that creates unique 3D models from text prompts. Built using modern AI models and integrated with a user-friendly interface for creative content generation. The application leverages state-of-the-art machine learning techniques to transform textual descriptions into visually compelling 3D models. Users can input detailed prompts and receive high-quality generated models that match their specifications. The system supports various model styles, subjects, and creative concepts.',
+                         Text(
+                          'I developed an AI-powered 3D model generation application that creates 3D models from text descriptions or uploaded images. I programmed the Spring Boot backend using Java and the React/Next.js frontend using TypeScript. The frontend uses Tailwind CSS for responsive styling, Three.js for 3D model visualization, and the project is built with Maven for dependency management. The application uses a microservices architecture where the React frontend communicates with the Spring Boot backend via RESTful API endpoints.',
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.black,
@@ -148,7 +146,29 @@ class _ModelPageState extends State<ModelPage> {
                           ),
                           textAlign: TextAlign.center,
                         ),
-                      ),
+                                              SizedBox(height: 12),
+
+
+                         Text(
+                          'For text-to-3D generation, when a user submits a text prompt the frontend sends a POST request to /api/3d/generate-from-text. The Spring Boot service enhances the prompt and makes a HTTP call to Stable Diffusion running on localhost:7860/sdapi/v1/txt2img with prompt data. Once the image is generated and saved to the backend file system, the Spring Boot service automatically sends the image data to TripoSR running on localhost:5000/generate-3d for 3D model construction. The entire dual-AI pipeline runs locally without external API dependencies.',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            height: 1.4,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      SizedBox(height: 12),
+
+                        Text(
+                          'For image-to-3D conversion, when a user uploads an image, the frontend sends a POST request to /api/3d/generate with the image data, which the backend processes and sends to TripoSR. TripoSR processes the input and returns a 3D model as an OBJ file. React state management dynamically updates the gallery to include the newly generated model. The frontend features an interactive Three.js 3D viewer that allows users to rotate, zoom, and inspect generated models.',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            height: 1.4,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       
                       SizedBox(height: 16),
 
