@@ -224,20 +224,18 @@ showMenu(
                         ),
                         SizedBox(height: 20),
                         
-                        // Centered Image
                         Center(
                           child: Container(
                             width: 575,
                             height: 350,
                             decoration: BoxDecoration(
-                              color: Colors.white, // Add white background
                               borderRadius: BorderRadius.circular(8),
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/images/82.png',
+                              'assets/images/94.png', 
                               height: 300,
-                              fit: BoxFit.contain,
+                              fit: BoxFit.fitHeight,
                             ),
                           ),
                         ),

@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   video_player: ^2.8.0
   url_launcher: ^6.2.1
+  webview_flutter: ^4.4.2
+
 
 
 dev_dependencies:
@@ -26,3 +28,4 @@ flutter:
     - assets/files/
     - assets/folders/
     - assets/pyfiles/
+    - assets/models/

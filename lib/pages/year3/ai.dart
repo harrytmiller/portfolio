@@ -733,7 +733,7 @@ class _AIState extends State<AI> {
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
-                            'The \'Download Submission Folder\' button will download the complete project submission folder. This folder contains all the code files, dataset, brief, documentation, and contributions.',
+                            '-The \'Download Submission Folder\' button will download the complete project submission folder. This folder contains all the code files, dataset, brief, documentation, and contributions.',
                             style: TextStyle(fontSize: 16, color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
