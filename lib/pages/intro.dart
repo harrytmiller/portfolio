@@ -227,7 +227,7 @@ class _IntroState extends State<Intro> {
                     ),
                     SizedBox(height: 12),
                     Text(
-                      'My degree is broad and covers different topics such as: usability, user interface design, security, software engineering, 3D design and animation, artificial intelligence, networks and databases (some of which are covered in this portfolio). I can use programming languages: Python,  Java, TypeScript, Dart, and PostgreSql. I have made multiple applications, the most relevant of which are accessible through this portfolio. It has been a goal of mine to achieve as highly as I am capable of at university. This includes both learning and understanding academic knowledge to score highly in exams, and applying what I know to produce high quality courseworks.',
+                      'My degree is broad and covers different topics such as: usability, user interface design, security, software engineering, 3D design and animation, artificial intelligence, networks and databases (some of which are covered in this portfolio). I can use programming languages: Python, Java, JavaScript, TypeScript, Dart, HTML, CSS, and SQL. I have made multiple applications, the most relevant of which are accessible through this portfolio. It has been a goal of mine to achieve as highly as I am capable of at university. This includes both learning and understanding academic knowledge to score highly in exams, and applying what I know to produce high quality courseworks.',
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
                       textAlign: TextAlign.left,
                     ),
@@ -343,14 +343,14 @@ class _IntroState extends State<Intro> {
                     Text(
                       '• Year 2: Projects and coursework completed during my second year at university\n'
                       '       -3D Design and Animation: Modelling and animation showcase page, including video and picture renders\n'
-                      '       -Software Engineering: Recipe generation app showcase page, including screenshots and running prototype\n'
+                      '       -Software Engineering: Full stack recipe generation app showcase page, including screenshots and running prototype\n'
                       '       -My First App: Movie recommender app showcase page, including screenshots and running prototype',
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
                     ),                    
                     SizedBox(height: 6),
                     Text(
                       '• Year 3: Projects and coursework completed during my final year at university\n'
-                      '       -Dissertaion: Math app showcase page, including screenshots and running prototype\n'
+                      '       -Dissertaion: Full stack math app showcase page, including screenshots and running prototype\n'
                       '       -Artificial Intelligence: Genetic algorithm and neural networks showcase page, including Python code and output screenshots',
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
                     ),                    
@@ -358,8 +358,10 @@ class _IntroState extends State<Intro> {
                     Text(
                       '• Post Uni: Projects completed after graduation\n'
                       '       -Portfolio: This portfolio website\n'
-                      '       -AI Image Generator: An AI image generation application that creates images from text prompts\n'
-                      '       -AI Model Generator: An AI model generation application that creates models from text prompts or images',
+                      '       -AI Image Generator: A full stack AI image generation application that creates images from text prompts\n'
+                      '       -AI Model Generator: A full stack AI model generation application that creates models from text prompts or images\n'
+                      '       -AI Chess Game: A full stack chess application that offers local multiplayer aswell as AI opponents',
+
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
                     ),
                     SizedBox(height: 6),
@@ -419,7 +421,7 @@ class _IntroState extends State<Intro> {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: Text(
-                         'My CV contains details about my educational background, work history, technical and soft skills, and achievements. It provides an overview of my academic journey that demonstrates my qualifications and readiness for future opportunities.',
+                         'My CV contains details about my educational background, work history, and technical skills. It provides an overview of my academic journey that demonstrates my qualifications and readiness for future opportunities.',
                           style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
                           textAlign: TextAlign.left,
                         ),

@@ -157,7 +157,7 @@ showMenu(
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/images/85.png', // Replace with your actual image path
+                              'assets/images/85.png', 
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
@@ -166,7 +166,6 @@ showMenu(
                         
                         SizedBox(height: 20),
                         
-                        // Text below image
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -242,7 +241,6 @@ showMenu(
                         
                         SizedBox(height: 20),
                         
-                        // Text below image
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -260,6 +258,82 @@ showMenu(
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.pushNamed(context, '/AiModelGen');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'Open Project',
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 169, 169, 169),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AI Chess Game',
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
+                        ),
+                        SizedBox(height: 20),
+                        
+                        Center(
+                          child: Container(
+                            width: 575,
+                            height: 350,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            clipBehavior: Clip.hardEdge,
+                            child: Image.asset(
+                              'assets/images/105.png', 
+                              height: 300,
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
+                        
+                        SizedBox(height: 20),
+                        
+                        // Text below image
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            'A comprehensive chess application with advanced gameplay features, AI opponents, and multiplayer functionality. Built with modern web technologies and strategic algorithms.',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        
+                        SizedBox(height: 20),
+                        
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.only(top: 0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/Chess');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,

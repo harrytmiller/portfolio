@@ -11,6 +11,7 @@ import 'package:portfolio/pages/year2/app.dart'; // Add App page import
 import 'package:portfolio/pages/year3/ai.dart'; // Add App page import
 import 'package:portfolio/pages/postUni/ai_image_gen.dart'; // Add AI Image Generator page
 import 'package:portfolio/pages/postUni/ai_model_gen.dart';
+import 'package:portfolio/pages/postUni/chess.dart'; // Add Chess page import
 
 
 
@@ -43,6 +44,8 @@ class MainApp extends StatelessWidget {
         '/Ai': (context) => AI(), // Add App route
         '/AiImageGen': (context) => AiImageGen(), // Add AI Image Generator route
         '/AiModelGen': (context) => ModelPage(), // Add AI Model Generator route - using correct class name
+              '/Chess': (context) => Chess(), // Add Chess route
+
       },
     );
   }
