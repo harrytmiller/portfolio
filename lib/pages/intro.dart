@@ -221,7 +221,7 @@ class _IntroState extends State<Intro> {
                   title: 'Personal Introduction',
                   children: [
                     Text(
-                      'My name is Harry Tiger Miller, I am 22 years old, and I recently graduated with First Class Honours in Computing from the University of Portsmouth. I\'m passionate about computing and expressing creativity through developing projects. I like turning ideas into reality by combining technical skills with creative thinking. I also enjoy complex problem solving as it allows for critical thinking, as well as satisfaction of finding the solution. I believe in continuous learning and personal development, I like to challenge myself both academically and personally to reach my full potential.',
+                      'My name is Harry Tiger Miller, I am 22 years old, and I recently graduated with First Class Honours in Computing from the University of Portsmouth. I\'m passionate about computing and expressing creativity through developing projects. I like turning ideas into reality by combining technical skills with creative thinking. I also enjoy complex problem solving as it allows for critical thinking, as well as the satisfaction of finding a solution. I believe in continuous learning and personal development. I like to challenge myself both academically and personally to reach my full potential.',
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
                       textAlign: TextAlign.left,
                     ),
@@ -432,7 +432,7 @@ class _IntroState extends State<Intro> {
                         margin: EdgeInsets.only(top: 0),
                         child: ElevatedButton.icon(
                           onPressed: () {
-                            _openPDFViewer('assets/files/CV.pdf', 'Curriculum Vitae');
+                            _openPDFViewer('assets/files/CV (8).pdf', 'Curriculum Vitae');
                           },
                           icon: Icon(Icons.picture_as_pdf, color: Colors.white),
                           label: Text(
