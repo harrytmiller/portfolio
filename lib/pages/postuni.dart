@@ -320,7 +320,7 @@ showMenu(
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
-                            'A comprehensive chess application with advanced gameplay features, AI opponents, and multiplayer functionality. Built with modern web technologies and strategic algorithms.',
+                          "A chess application featuring both local multiplayer and AI opponents. The game implements an interactive board and peices with all standard chess rules.",
                             style: TextStyle(fontSize: 16, color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
