@@ -449,7 +449,7 @@ showMenu(
                           margin: EdgeInsets.only(top: 0),
                           child: ElevatedButton(
                             onPressed: () {
-                              _openPDFViewer('assets/pdfs/AZ900.pdf', 'AZ-900 Certificate');
+                              _openPDFViewer('assets/files/AZ900.pdf', 'AZ-900 Certificate');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
@@ -506,7 +506,7 @@ showMenu(
                           margin: EdgeInsets.only(top: 0),
                           child: ElevatedButton(
                             onPressed: () {
-                              _openPDFViewer('assets/pdfs/AZ104.pdf', 'AZ-104 Certificate');
+                              _openPDFViewer('assets/files/AZ104.pdf', 'AZ-104 Certificate');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
