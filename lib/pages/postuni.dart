@@ -614,7 +614,7 @@ showMenu(
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/files/placeholder1.png', 
+                              'assets/images/120.png', 
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
@@ -690,7 +690,7 @@ showMenu(
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/files/placeholder2.png', 
+                              'assets/images/135.png', 
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
