@@ -30,11 +30,12 @@ class _Project1State extends State<Project1> {
     'assets/images/128.png',
     'assets/images/129.png',
     'assets/images/130.png',
-    'assets/images/130.png',
     'assets/images/131.png',
     'assets/images/132.png',
     'assets/images/133.png',
     'assets/images/134.png',
+    'assets/images/145.png',
+    'assets/images/146.png',
 
   ];
 
