@@ -608,15 +608,14 @@ showMenu(
                         Center(
                           child: Container(
                             width: 575,
-                            height: 350,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
                               'assets/images/120.png', 
-                              height: 300,
-                              fit: BoxFit.fitHeight,
+width: 575,
+      fit: BoxFit.fitWidth,
                             ),
                           ),
                         ),
@@ -684,15 +683,13 @@ showMenu(
                         Center(
                           child: Container(
                             width: 575,
-                            height: 350,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
                               'assets/images/135.png', 
-                              height: 300,
-                              fit: BoxFit.fitHeight,
+      fit: BoxFit.fitWidth,
                             ),
                           ),
                         ),
