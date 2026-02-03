@@ -131,9 +131,7 @@ class _Project1State extends State<Project1> {
                         
                         Container(
                           child: Text(
-                            '
-I programmed this app using Javascript with React/Next.js, I also used JSX and Tailwind CSS. The purpose of the app is to track what jobs you have applied to. It offers insights that help users see what stages of the application process they are failing through a graph of percentages and bar charts. It lets users filter the insights and raw applications data by date. The app also includes a dark mode.
-                            ',
+                            'I programmed this app using Javascript with React/Next.js, I also used JSX and Tailwind CSS. The purpose of the app is to track what jobs you have applied to. It offers insights that help users see what stages of the application process they are failing through a graph of percentages and bar charts. It lets users filter the insights and raw applications data by date. The app also includes a dark mode.',
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.black,
