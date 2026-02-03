@@ -674,6 +674,20 @@ class _AIState extends State<AI> {
                             textAlign: TextAlign.center,
                           ),
                         ),
+
+                                                SizedBox(height: 16),
+                        
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          child: Text(
+'I completed the highest weighing neural network myself. I programmed the neural network from scratch using NumPy. It trains on hundreds or thousands of diamonds with 7 varying attributes, to be able to estimate their values. The script first processes the data by normalising the features and converting text based attributes like cut quality and color into numerical values. It then uses feature engineering, squared and cubed, to help capture non-linear relationships. It then learns complex patterns by adjusting weights across 3 hidden layers through backpropagation, where the network compares its predictions against actual prices and updates its parameters. This stage uses dropout regularisation to prevent overfitting. I also designed the system with adjustable hyperparameters, allowing me to experiment and optimise the model\'s performance.'                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              height: 1.4,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
                         
                         SizedBox(height: 30),
                         

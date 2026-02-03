@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PostUni extends StatefulWidget {
   @override
@@ -56,6 +57,13 @@ showMenu(
       setState(() {
         _isMenuOpen = true;
       });
+    }
+  }
+
+  Future<void> _openPdf(String assetPath) async {
+    final Uri url = Uri.parse(assetPath);
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $assetPath');
     }
   }
 
@@ -122,7 +130,7 @@ showMenu(
                             textAlign: TextAlign.center,
                           ),
                         ),
-                                                SizedBox(height: 10),
+                        SizedBox(height: 10),
 
                       ],
                     ),
@@ -334,6 +342,405 @@ showMenu(
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.pushNamed(context, '/Chess');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'Open Project',
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                // AZ900 Certification Container
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 169, 169, 169),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Azure Fundamentals (AZ-900)',
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold,),
+                        ),
+                        SizedBox(height: 10),
+                        
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            'I achieved my AZ900 as an introduction to the cloud. I didn\'t find it to be challenging and achieved it on my first attempt.',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.only(top: 0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _openPdf('assets/pdfs/AZ900.pdf');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'Open PDF',
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                // AZ104 Certification Container
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 169, 169, 169),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Azure Administrator (AZ-104)',
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold,),
+                        ),
+                        SizedBox(height: 10),
+                        
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            'I achieved my AZ104 as it was the natural next step after completing the AZ900. I found the content to be more vast and complex but I studied to get an understanding of the services offered by Azure and completed it on my first attempt.',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.only(top: 0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _openPdf('assets/pdfs/AZ104.pdf');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'Open PDF',
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                // AWS Cloud Practitioner Certification Container
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 169, 169, 169),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AWS Cloud Practitioner (CLF-C02)',
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold,),
+                        ),
+                        SizedBox(height: 10),
+                        
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            'I achieved my AWS CLF-C02 to better round my cloud certification. I didn\'t find this to be challenging as the content was similar to Azure and I achieved it on my first attempt.',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.only(top: 0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _openPdf('assets/pdfs/AWS Certified Cloud Practitioner certificate (2).pdf');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'Open PDF',
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                // Project 1 Container
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 169, 169, 169),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Task Manager',
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
+                        ),
+                        SizedBox(height: 20),
+                        
+                        Center(
+                          child: Container(
+                            width: 575,
+                            height: 350,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            clipBehavior: Clip.hardEdge,
+                            child: Image.asset(
+                              'assets/images/placeholder1.png', 
+                              height: 300,
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
+                        
+                        SizedBox(height: 20),
+                        
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            'An application that helps users plan their daily tasks.',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        
+                        SizedBox(height: 20),
+                        
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.only(top: 0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/Project1');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'Open Project',
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                // Project 2 Container
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 169, 169, 169),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Application Tracker',
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
+                        ),
+                        SizedBox(height: 20),
+                        
+                        Center(
+                          child: Container(
+                            width: 575,
+                            height: 350,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            clipBehavior: Clip.hardEdge,
+                            child: Image.asset(
+                              'assets/images/placeholder2.png', 
+                              height: 300,
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
+                        
+                        SizedBox(height: 20),
+                        
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            'An application that allows users to add and view jobs they\'ve applied for with insights.',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        
+                        SizedBox(height: 20),
+                        
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.only(top: 0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/Project2');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'Open Project',
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                // Project 3 Container
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 169, 169, 169),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'API Intel',
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
+                        ),
+                        SizedBox(height: 20),
+                        
+                        Center(
+                          child: Container(
+                            width: 575,
+                            height: 350,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            clipBehavior: Clip.hardEdge,
+                            child: Image.asset(
+                              'assets/images/placeholder3.png', 
+                              height: 300,
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
+                        
+                        SizedBox(height: 20),
+                        
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            'An application that allows users to see analytics on REST APIs that have OpenAPI specification and traffic data.',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        
+                        SizedBox(height: 20),
+                        
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.only(top: 0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/Project3');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,

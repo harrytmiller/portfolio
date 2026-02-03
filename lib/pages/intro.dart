@@ -360,7 +360,14 @@ class _IntroState extends State<Intro> {
                       '       -Portfolio: This portfolio website\n'
                       '       -AI Image Generator: A full stack AI image generation application that creates images from text prompts\n'
                       '       -AI Model Generator: A full stack AI model generation application that creates models from text prompts or images\n'
-                      '       -AI Chess Game: A full stack chess application that offers local multiplayer aswell as AI opponents',
+                      '       -AI Chess Game: A full stack chess application that offers local multiplayer aswell as AI opponents\n'
+                      '       -Azure Fundamentals (AZ-900): Cloud certification achieved as an introduction to Azure, completed on first attempt\n'
+                      '       -Azure Administrator (AZ-104): Cloud certification covering Azure services and administration, completed on first attempt\n'
+                      '       -AWS Cloud Practitioner (CLF-C02): Cloud certification covering AWS fundamentals, completed on first attempt\n'
+                      '       -Task Manager: An application that helps users plan their daily tasks\n'
+                      '       -Application Tracker: An application that allows users to add and view jobs they\'ve applied for with insights\n'
+                      '       -API Intel: An application that allows users to see analytics on REST APIs that have OpenAPI specification and traffic data'
+                      ,
 
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
                     ),

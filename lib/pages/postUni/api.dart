@@ -3,38 +3,31 @@ import 'package:flutter/services.dart';
 import 'dart:typed_data';
 import 'dart:html' as html;
 
-class App extends StatefulWidget {
+class Project1 extends StatefulWidget {
   @override
-  _AppState createState() => _AppState();
+  _Project1State createState() => _Project1State();
 }
 
-class _AppState extends State<App> {
-  // Scroll controller for custom scrollbar
+class _Project1State extends State<Project1> {
   final ScrollController _scrollController = ScrollController();
   
-  // Image gallery state
   int _currentImageIndex = 0;
   int _thumbnailStartIndex = 0;
-  int _thumbnailsPerPage = 4;
-  int _maxThumbnailsPerPage = 3;
+  int _thumbnailsPerPage = 7;
+  int _maxThumbnailsPerPage = 7;
   int _minThumbnailsPerPage = 3;
   bool _hasRenderFlex = false;
   
   List<String> _imagePaths = [
-    'assets/images/67.png',
-    'assets/images/68.png',
-    'assets/images/69.png',
-    'assets/images/70.png', // Added image 70
+    'assets/images/placeholder1_1.png',
+    'assets/images/placeholder1_2.png',
+    'assets/images/placeholder1_3.png',
+    'assets/images/placeholder1_4.png',
+    'assets/images/placeholder1_5.png',
   ];
 
   void _launchURL(String url) {
     html.window.open(url, '_blank');
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
   }
 
   @override
@@ -77,13 +70,10 @@ class _AppState extends State<App> {
     });
   }
 
-  // Helper method to determine BoxFit for specific images
-  BoxFit _getImageFit(int imageIndex) {
-    String imagePath = _imagePaths[imageIndex];
-    if (imagePath.contains('70.png')) {
-      return BoxFit.fitWidth;
-    }
-    return BoxFit.cover;
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -92,7 +82,7 @@ class _AppState extends State<App> {
     
     return Scaffold(
       appBar: AppBar(
-        title: Text('My First App', 
+        title: Text('API Intel', 
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
         backgroundColor: const Color.fromARGB(255, 169, 169, 169),
         leading: IconButton(
@@ -114,188 +104,91 @@ class _AppState extends State<App> {
         child: SingleChildScrollView(
           controller: _scrollController,
           child: Center(
-          child: Column(
-            children: [
-              SizedBox(height: 50),
+            child: Column(
+              children: [
+                SizedBox(height: 50),
 
-              // Image Gallery Section
-              Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                margin: EdgeInsets.symmetric(vertical: 20),
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 169, 169, 169),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Column(
-                    children: [
-                      Text(
-                        'Movie Recommender',
-                        style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                      SizedBox(height: 16),
-                      
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-                        child: Text(
-                          'This is the first app I ever made. I made a decision map based movie recommender. I made it during my second year at university and It was completed for the implementation side of my User Experience Design and Implementation module. I made the app using Flutter/Dart and it uses a CSV decision map. Each row in the CSV represents a node containing text, image path and navigation IDs for different user choices (yes/no/back/restart). Below is a link to a running prototype of the app as well as screenshots of the interface and CSV file. I made some changes after submission as when I made this I was new to software engineering and I was still experimenting with building Interfaces and making apps.',
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 169, 169, 169),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Column(
+                      children: [
+                        Text(
+                          'API Intel',
                           style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
-                            height: 1.4,
-                          ),
-                          textAlign: TextAlign.center,
+                              fontSize: 22,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              ),
                         ),
-                      ),
-                      
-                      SizedBox(height: 16),
-
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-                        child: GestureDetector(
-                          onTap: () => _launchURL('https://harrytmiller.github.io/movie_recommender-/'),
+                        SizedBox(height: 16),
+                        
+                        Container(
                           child: Text(
-                            'Link to running prototype',
+                            '
+I programmed this app using Javascript with React/Next.js, I also used JSX and Tailwind CSS. The purpose of the app is to analyze REST API contracts by comparing OpenAPI specifications against real traffic data. It detects issues such as type mismatches, undocumented fields, and unused fields. It identifies dead endpoints with zero traffic and deprecated endpoints still receiving requests. The app displays a contract health score, endpoint statistics, and field usage percentages. It includes an optimiser that shows which endpoints and fields are safe to delete. The app also features a dark mode.
+                            ',
                             style: TextStyle(
                               fontSize: 16,
-                              color: Colors.blue,
-                              height: 1.4,
-                              decoration: TextDecoration.underline,
-                              decorationColor: Colors.blue,
+                              color: Colors.black,
                             ),
                             textAlign: TextAlign.center,
                           ),
                         ),
-                      ),
-                      
-                       SizedBox(height: 30),
+                        
+                        SizedBox(height: 30),
 
-                      _buildImageGallery(),
-
-                    ],
-                  ),
-                ),
-              ),
-
-              // Project Info Section
-              Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                margin: EdgeInsets.symmetric(vertical: 20),
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 169, 169, 169),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Code Folder',
-                        style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                      SizedBox(height: 16),
-                      
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Column(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              '-The \'Download Code Folder\' button downloads the code folder for my app.',
-                              style: TextStyle(fontSize: 16, color: Colors.black),
-                              textAlign: TextAlign.center,
+                            GestureDetector(
+                              onTap: () => _launchURL('https://harrytmiller.github.io/api-tracker/'), 
+                              child: Text(
+                                'Live Demo',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.blue,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: Colors.blue,
+                                ),
+                              ),
                             ),
-                 
+                            SizedBox(width: 24),
+                            GestureDetector(
+                              onTap: () => _launchURL('https://github.com/harrytmiller/api-tracker'), 
+                              child: Text(
+                                'GitHub Repository',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.blue,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: Colors.blue,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
-                      ),
-                      
-                      SizedBox(height: 20),
-                      
-                      Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.only(top: 0),
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            try {
-                              final ByteData data = await rootBundle.load('assets/folders/movie_recommender.zip');
-                              final Uint8List bytes = data.buffer.asUint8List();
-                              
-                              final blob = html.Blob([bytes], 'application/zip');
-                              final url = html.Url.createObjectUrlFromBlob(blob);
-                              
-                              final anchor = html.AnchorElement()
-                                ..href = url
-                                ..download = 'movie_recommender.zip'
-                                ..style.display = 'none';
-                              
-                              html.document.body!.append(anchor);
-                              anchor.click();
-                              anchor.remove();
-                              
-                              html.Url.revokeObjectUrl(url);
-                              
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Download started!')),
-                              );
-                            } catch (e) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('Download failed: File not found'),
-                                  backgroundColor: Colors.red,
-                                ),
-                              );
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
-                            padding: EdgeInsets.symmetric(vertical: 15),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(12),
-                                bottomRight: Radius.circular(12),
-                              ),
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.download,
-                                color: Colors.white,
-                                // Removed size: 16 to use default size for consistency
-                              ),
-                              SizedBox(width: 8),
-                              Text(
-                                'Download Code Folder',
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+                        
+                        SizedBox(height: 30),
+
+                        _buildImageGallery(),
+
+                      ],
+                    ),
                   ),
                 ),
-              ),
 
-              SizedBox(height: 50),
-            ],
+                SizedBox(height: 50),
+              ],
+            ),
           ),
         ),
-      ),
       ),
     );
   }
@@ -303,10 +196,9 @@ class _AppState extends State<App> {
   Widget _buildImageGallery() {
     return Column(
       children: [
-        // Main Image Display
         Container(
           width: 768,
-          height: 432,
+          height: 364,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(12),
@@ -322,7 +214,7 @@ class _AppState extends State<App> {
                   borderRadius: BorderRadius.circular(10),
                   child: Image.asset(
                     _imagePaths[_currentImageIndex],
-                    fit: _getImageFit(_currentImageIndex), // Use conditional fit
+                    fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) {
                       return Container(
                         color: Colors.grey.shade100,
@@ -344,14 +236,6 @@ class _AppState extends State<App> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(height: 8),
-                              Text(
-                                _imagePaths[_currentImageIndex].split('/').last,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey.shade500,
-                                ),
-                              ),
                             ],
                           ),
                         ),
@@ -361,7 +245,6 @@ class _AppState extends State<App> {
                 ),
               ),
               
-              // Left Arrow
               Positioned(
                 left: 16,
                 top: 0,
@@ -384,7 +267,6 @@ class _AppState extends State<App> {
                 ),
               ),
               
-              // Right Arrow
               Positioned(
                 right: 16,
                 top: 0,
@@ -407,7 +289,6 @@ class _AppState extends State<App> {
                 ),
               ),
               
-              // Image Counter
               Positioned(
                 bottom: 16,
                 right: 16,
@@ -433,7 +314,6 @@ class _AppState extends State<App> {
         
         SizedBox(height: 20),
         
-        // Thumbnail Row with Navigation
         Center(
           child: Column(
             children: [
@@ -489,27 +369,13 @@ class _AppState extends State<App> {
                                     clipBehavior: Clip.hardEdge,
                                     child: Image.asset(
                                       _imagePaths[actualIndex],
-                                      fit: _getImageFit(actualIndex), // Use conditional fit for thumbnails too
+                                      fit: BoxFit.contain,
                                       errorBuilder: (context, error, stackTrace) {
                                         return Center(
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Icon(
-                                                Icons.broken_image,
-                                                size: 24,
-                                                color: isSelected ? Colors.blue : Colors.grey.shade400,
-                                              ),
-                                              SizedBox(height: 4),
-                                              Text(
-                                                '${actualIndex + 1}',
-                                                style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: isSelected ? Colors.blue : Colors.grey.shade600,
-                                                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                                                ),
-                                              ),
-                                            ],
+                                          child: Icon(
+                                            Icons.broken_image,
+                                            size: 24,
+                                            color: isSelected ? Colors.blue : Colors.grey.shade400,
                                           ),
                                         );
                                       },
