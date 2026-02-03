@@ -3,12 +3,12 @@ import 'package:flutter/services.dart';
 import 'dart:typed_data';
 import 'dart:html' as html;
 
-class Project1 extends StatefulWidget {
+class Project3 extends StatefulWidget {
   @override
-  _Project1State createState() => _Project1State();
+  _Project3State createState() => _Project3State();
 }
 
-class _Project1State extends State<Project1> {
+class _Project3State extends State<Project3> {
   final ScrollController _scrollController = ScrollController();
   
   int _currentImageIndex = 0;
