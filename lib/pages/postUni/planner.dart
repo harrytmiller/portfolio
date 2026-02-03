@@ -19,11 +19,23 @@ class _Project1State extends State<Project1> {
   bool _hasRenderFlex = false;
   
   List<String> _imagePaths = [
-    'assets/images/placeholder1_1.png',
-    'assets/images/placeholder1_2.png',
-    'assets/images/placeholder1_3.png',
-    'assets/images/placeholder1_4.png',
-    'assets/images/placeholder1_5.png',
+    'assets/images/120.png',
+    'assets/images/121.png',
+    'assets/images/122.png',
+    'assets/images/123.png',
+    'assets/images/124.png',
+    'assets/images/125.png',
+    'assets/images/126.png',
+    'assets/images/127.png',
+    'assets/images/128.png',
+    'assets/images/129.png',
+    'assets/images/130.png',
+    'assets/images/130.png',
+    'assets/images/131.png',
+    'assets/images/132.png',
+    'assets/images/133.png',
+    'assets/images/134.png',
+
   ];
 
   void _launchURL(String url) {
