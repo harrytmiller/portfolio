@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class PostUni extends StatefulWidget {
   @override
@@ -9,7 +9,7 @@ class PostUni extends StatefulWidget {
 class _PostUniState extends State<PostUni> {
   final GlobalKey _menuKey = GlobalKey();
   bool _isMenuOpen = false;
-  
+
   // Scroll controller for custom scrollbar
   final ScrollController _scrollController = ScrollController();
 
@@ -27,25 +27,35 @@ class _PostUniState extends State<PostUni> {
         _isMenuOpen = false;
       });
     } else {
-      final RenderBox renderBox = _menuKey.currentContext!.findRenderObject() as RenderBox;
+      final RenderBox renderBox =
+          _menuKey.currentContext!.findRenderObject() as RenderBox;
       final position = renderBox.localToGlobal(Offset.zero);
-      
-showMenu(
-  context: context,
-  color: const Color.fromARGB(255, 169, 169, 169),
-  position: RelativeRect.fromLTRB(
-    position.dx,
-    position.dy + renderBox.size.height + 8,
-    position.dx + renderBox.size.width,
-    position.dy + renderBox.size.height + 8,
-  ),
-  items: [
-    PopupMenuItem(value: '/Intro', child: Text('Introduction', style: TextStyle(color: Colors.black))),
-    PopupMenuItem(value: '/Y2', child: Text('Year 2', style: TextStyle(color: Colors.black))),
-    PopupMenuItem(value: '/Y3', child: Text('Year 3', style: TextStyle(color: Colors.black))),
-    PopupMenuItem(value: '/WriteUps', child: Text('Reports', style: TextStyle(color: Colors.black))),
-  ],
-).then((value) {
+
+      showMenu(
+        context: context,
+        color: const Color.fromARGB(255, 169, 169, 169),
+        position: RelativeRect.fromLTRB(
+          position.dx,
+          position.dy + renderBox.size.height + 8,
+          position.dx + renderBox.size.width,
+          position.dy + renderBox.size.height + 8,
+        ),
+        items: [
+          PopupMenuItem(
+              value: '/Intro',
+              child: Text('Introduction',
+                  style: TextStyle(color: Colors.black))),
+          PopupMenuItem(
+              value: '/Y2',
+              child: Text('Year 2', style: TextStyle(color: Colors.black))),
+          PopupMenuItem(
+              value: '/Y3',
+              child: Text('Year 3', style: TextStyle(color: Colors.black))),
+          PopupMenuItem(
+              value: '/WriteUps',
+              child: Text('Reports', style: TextStyle(color: Colors.black))),
+        ],
+      ).then((value) {
         setState(() {
           _isMenuOpen = false;
         });
@@ -53,18 +63,23 @@ showMenu(
           _onMenuSelect(context, value);
         }
       });
-      
+
       setState(() {
         _isMenuOpen = true;
       });
     }
   }
 
-  Future<void> _openPdf(String assetPath) async {
-    final Uri url = Uri.parse(assetPath);
-    if (!await launchUrl(url)) {
-      throw Exception('Could not launch $assetPath');
-    }
+  void _openPdf(String assetPath, String title) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PdfViewerPage(
+          assetPath: assetPath,
+          title: title,
+        ),
+      ),
+    );
   }
 
   @override
@@ -77,7 +92,8 @@ showMenu(
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Post Uni', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+        title: Text('Post Uni',
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
         backgroundColor: const Color.fromARGB(255, 169, 169, 169),
         leading: IconButton(
           key: _menuKey,
@@ -102,7 +118,7 @@ showMenu(
             child: Column(
               children: [
                 SizedBox(height: 50),
-
+                // Portfolio Container
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   margin: EdgeInsets.symmetric(vertical: 20),
@@ -117,11 +133,13 @@ showMenu(
                       children: [
                         Text(
                           'Portfolio',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold,),
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 10),
-                        
-                        // Text content only
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -131,12 +149,11 @@ showMenu(
                           ),
                         ),
                         SizedBox(height: 10),
-
                       ],
                     ),
                   ),
                 ),
-
+                // AI Image Generator Container
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   margin: EdgeInsets.symmetric(vertical: 20),
@@ -151,11 +168,13 @@ showMenu(
                       children: [
                         Text(
                           'AI Image Generator',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 20),
-                        
-                        // Centered Image
                         Center(
                           child: Container(
                             width: 575,
@@ -165,15 +184,13 @@ showMenu(
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/images/85.png', 
+                              'assets/images/85.png',
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
                           ),
                         ),
-                        
                         SizedBox(height: 20),
-                        
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -182,9 +199,7 @@ showMenu(
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        
                         SizedBox(height: 20),
-                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
@@ -204,7 +219,10 @@ showMenu(
                             ),
                             child: Text(
                               'Open Project',
-                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -212,7 +230,7 @@ showMenu(
                     ),
                   ),
                 ),
-
+                // AI Model Generator Container
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   margin: EdgeInsets.symmetric(vertical: 20),
@@ -227,10 +245,13 @@ showMenu(
                       children: [
                         Text(
                           'AI Model Generator',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 20),
-                        
                         Center(
                           child: Container(
                             width: 575,
@@ -240,15 +261,13 @@ showMenu(
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/images/94.png', 
+                              'assets/images/94.png',
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
                           ),
                         ),
-                        
                         SizedBox(height: 20),
-                        
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -257,9 +276,7 @@ showMenu(
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        
                         SizedBox(height: 20),
-                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
@@ -279,7 +296,10 @@ showMenu(
                             ),
                             child: Text(
                               'Open Project',
-                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -287,7 +307,7 @@ showMenu(
                     ),
                   ),
                 ),
-
+                // AI Chess Game Container
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   margin: EdgeInsets.symmetric(vertical: 20),
@@ -302,10 +322,13 @@ showMenu(
                       children: [
                         Text(
                           'AI Chess Game',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 20),
-                        
                         Center(
                           child: Container(
                             width: 575,
@@ -315,27 +338,22 @@ showMenu(
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/images/105.png', 
+                              'assets/images/105.png',
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
                           ),
                         ),
-                        
                         SizedBox(height: 20),
-                        
-                        // Text below image
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
-                          "A chess application featuring both local multiplayer and AI opponents. The game implements an interactive board and peices with all standard chess rules.",
+                            "A chess application featuring both local multiplayer and AI opponents. The game implements an interactive board and peices with all standard chess rules.",
                             style: TextStyle(fontSize: 16, color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        
                         SizedBox(height: 20),
-                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
@@ -355,7 +373,10 @@ showMenu(
                             ),
                             child: Text(
                               'Open Project',
-                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -363,7 +384,6 @@ showMenu(
                     ),
                   ),
                 ),
-
                 // AZ900 Certification Container
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
@@ -379,10 +399,13 @@ showMenu(
                       children: [
                         Text(
                           'Azure Fundamentals (AZ-900)',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold,),
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 10),
-                        
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -392,13 +415,13 @@ showMenu(
                           ),
                         ),
                         SizedBox(height: 10),
-                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
                           child: ElevatedButton(
                             onPressed: () {
-                              _openPdf('assets/pdfs/AZ900.pdf');
+                              _openPdf('assets/pdfs/AZ900.pdf',
+                                  'Azure Fundamentals (AZ-900)');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
@@ -412,7 +435,10 @@ showMenu(
                             ),
                             child: Text(
                               'Open PDF',
-                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -420,7 +446,6 @@ showMenu(
                     ),
                   ),
                 ),
-
                 // AZ104 Certification Container
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
@@ -436,10 +461,13 @@ showMenu(
                       children: [
                         Text(
                           'Azure Administrator (AZ-104)',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold,),
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 10),
-                        
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -449,13 +477,13 @@ showMenu(
                           ),
                         ),
                         SizedBox(height: 10),
-                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
                           child: ElevatedButton(
                             onPressed: () {
-                              _openPdf('assets/pdfs/AZ104.pdf');
+                              _openPdf('assets/pdfs/AZ104.pdf',
+                                  'Azure Administrator (AZ-104)');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
@@ -469,7 +497,10 @@ showMenu(
                             ),
                             child: Text(
                               'Open PDF',
-                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -477,7 +508,6 @@ showMenu(
                     ),
                   ),
                 ),
-
                 // AWS Cloud Practitioner Certification Container
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
@@ -493,10 +523,13 @@ showMenu(
                       children: [
                         Text(
                           'AWS Cloud Practitioner (CLF-C02)',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold,),
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 10),
-                        
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -506,13 +539,14 @@ showMenu(
                           ),
                         ),
                         SizedBox(height: 10),
-                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
                           child: ElevatedButton(
                             onPressed: () {
-                              _openPdf('assets/pdfs/AWS Certified Cloud Practitioner certificate (2).pdf');
+                              _openPdf(
+                                  'assets/pdfs/AWS Certified Cloud Practitioner certificate (2).pdf',
+                                  'AWS Cloud Practitioner (CLF-C02)');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
@@ -526,7 +560,10 @@ showMenu(
                             ),
                             child: Text(
                               'Open PDF',
-                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -534,8 +571,7 @@ showMenu(
                     ),
                   ),
                 ),
-
-                // Project 1 Container
+                // Task Manager Container
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   margin: EdgeInsets.symmetric(vertical: 20),
@@ -550,10 +586,13 @@ showMenu(
                       children: [
                         Text(
                           'Task Manager',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 20),
-                        
                         Center(
                           child: Container(
                             width: 575,
@@ -563,15 +602,13 @@ showMenu(
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/images/placeholder1.png', 
+                              'assets/images/placeholder1.png',
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
                           ),
                         ),
-                        
                         SizedBox(height: 20),
-                        
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -580,9 +617,7 @@ showMenu(
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        
                         SizedBox(height: 20),
-                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
@@ -602,7 +637,10 @@ showMenu(
                             ),
                             child: Text(
                               'Open Project',
-                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -610,8 +648,7 @@ showMenu(
                     ),
                   ),
                 ),
-
-                // Project 2 Container
+                // Application Tracker Container
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   margin: EdgeInsets.symmetric(vertical: 20),
@@ -626,10 +663,13 @@ showMenu(
                       children: [
                         Text(
                           'Application Tracker',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 20),
-                        
                         Center(
                           child: Container(
                             width: 575,
@@ -639,15 +679,13 @@ showMenu(
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/images/placeholder2.png', 
+                              'assets/images/placeholder2.png',
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
                           ),
                         ),
-                        
                         SizedBox(height: 20),
-                        
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -656,9 +694,7 @@ showMenu(
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        
                         SizedBox(height: 20),
-                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
@@ -678,7 +714,10 @@ showMenu(
                             ),
                             child: Text(
                               'Open Project',
-                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -686,8 +725,7 @@ showMenu(
                     ),
                   ),
                 ),
-
-                // Project 3 Container
+                // API Intel Container
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   margin: EdgeInsets.symmetric(vertical: 20),
@@ -702,10 +740,13 @@ showMenu(
                       children: [
                         Text(
                           'API Intel',
-                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 20),
-                        
                         Center(
                           child: Container(
                             width: 575,
@@ -715,15 +756,13 @@ showMenu(
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/images/placeholder3.png', 
+                              'assets/images/placeholder3.png',
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
                           ),
                         ),
-                        
                         SizedBox(height: 20),
-                        
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -732,9 +771,7 @@ showMenu(
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        
                         SizedBox(height: 20),
-                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
@@ -754,7 +791,10 @@ showMenu(
                             ),
                             child: Text(
                               'Open Project',
-                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -762,7 +802,6 @@ showMenu(
                     ),
                   ),
                 ),
-
                 // Navigation Buttons
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
@@ -772,7 +811,10 @@ showMenu(
                       Center(
                         child: Text(
                           'Quick Navigation',
-                          style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                       SizedBox(height: 16),
@@ -878,12 +920,43 @@ showMenu(
                     ],
                   ),
                 ),
-
                 SizedBox(height: 50),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+// Separate PDF Viewer Page
+class PdfViewerPage extends StatelessWidget {
+  final String assetPath;
+  final String title;
+
+  const PdfViewerPage({
+    Key? key,
+    required this.assetPath,
+    required this.title,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          title,
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: const Color.fromARGB(255, 169, 169, 169),
+        iconTheme: IconThemeData(color: Colors.black),
+      ),
+      body: SfPdfViewer.asset(
+        assetPath,
+        canShowScrollHead: true,
+        canShowScrollStatus: true,
+        enableDoubleTapZooming: true,
       ),
     );
   }
