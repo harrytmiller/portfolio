@@ -563,7 +563,7 @@ showMenu(
                           margin: EdgeInsets.only(top: 0),
                           child: ElevatedButton(
                             onPressed: () {
-                              _openPDFViewer('assets/pdfs/AWS Certified Cloud Practitioner certificate (2).pdf', 'AWS Cloud Practitioner Certificate');
+                              _openPDFViewer('assets/files/AWS Certified Cloud Practitioner certificate (2).pdf', 'AWS Cloud Practitioner Certificate');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
@@ -614,7 +614,7 @@ showMenu(
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/images/placeholder1.png', 
+                              'assets/files/placeholder1.png', 
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
@@ -690,7 +690,7 @@ showMenu(
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/images/placeholder2.png', 
+                              'assets/files/placeholder2.png', 
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
