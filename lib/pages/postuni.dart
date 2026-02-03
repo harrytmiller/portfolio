@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:flutter/services.dart';
+import 'dart:typed_data';
+import 'dart:html' as html;
 
 class PostUni extends StatefulWidget {
   @override
@@ -9,7 +11,7 @@ class PostUni extends StatefulWidget {
 class _PostUniState extends State<PostUni> {
   final GlobalKey _menuKey = GlobalKey();
   bool _isMenuOpen = false;
-
+  
   // Scroll controller for custom scrollbar
   final ScrollController _scrollController = ScrollController();
 
@@ -27,35 +29,25 @@ class _PostUniState extends State<PostUni> {
         _isMenuOpen = false;
       });
     } else {
-      final RenderBox renderBox =
-          _menuKey.currentContext!.findRenderObject() as RenderBox;
+      final RenderBox renderBox = _menuKey.currentContext!.findRenderObject() as RenderBox;
       final position = renderBox.localToGlobal(Offset.zero);
-
-      showMenu(
-        context: context,
-        color: const Color.fromARGB(255, 169, 169, 169),
-        position: RelativeRect.fromLTRB(
-          position.dx,
-          position.dy + renderBox.size.height + 8,
-          position.dx + renderBox.size.width,
-          position.dy + renderBox.size.height + 8,
-        ),
-        items: [
-          PopupMenuItem(
-              value: '/Intro',
-              child: Text('Introduction',
-                  style: TextStyle(color: Colors.black))),
-          PopupMenuItem(
-              value: '/Y2',
-              child: Text('Year 2', style: TextStyle(color: Colors.black))),
-          PopupMenuItem(
-              value: '/Y3',
-              child: Text('Year 3', style: TextStyle(color: Colors.black))),
-          PopupMenuItem(
-              value: '/WriteUps',
-              child: Text('Reports', style: TextStyle(color: Colors.black))),
-        ],
-      ).then((value) {
+      
+showMenu(
+  context: context,
+  color: const Color.fromARGB(255, 169, 169, 169),
+  position: RelativeRect.fromLTRB(
+    position.dx,
+    position.dy + renderBox.size.height + 8,
+    position.dx + renderBox.size.width,
+    position.dy + renderBox.size.height + 8,
+  ),
+  items: [
+    PopupMenuItem(value: '/Intro', child: Text('Introduction', style: TextStyle(color: Colors.black))),
+    PopupMenuItem(value: '/Y2', child: Text('Year 2', style: TextStyle(color: Colors.black))),
+    PopupMenuItem(value: '/Y3', child: Text('Year 3', style: TextStyle(color: Colors.black))),
+    PopupMenuItem(value: '/WriteUps', child: Text('Reports', style: TextStyle(color: Colors.black))),
+  ],
+).then((value) {
         setState(() {
           _isMenuOpen = false;
         });
@@ -63,23 +55,67 @@ class _PostUniState extends State<PostUni> {
           _onMenuSelect(context, value);
         }
       });
-
+      
       setState(() {
         _isMenuOpen = true;
       });
     }
   }
 
-  void _openPdf(String assetPath, String title) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => PdfViewerPage(
-          assetPath: assetPath,
-          title: title,
-        ),
-      ),
-    );
+  void _openPDFViewer(String pdfPath, String title) async {
+    try {
+      final ByteData data = await rootBundle.load(pdfPath);
+      final Uint8List bytes = data.buffer.asUint8List();
+      
+      if (bytes.length == 0) {
+        throw Exception('PDF file is empty');
+      }
+      
+      final blob = html.Blob([bytes], 'application/pdf');
+      final url = html.Url.createObjectUrlFromBlob(blob);
+      
+      final windowName = title.replaceAll(' ', '_').replaceAll('-', '_');
+      html.window.open(url, windowName);
+      
+      Future.delayed(Duration(seconds: 1), () {
+        html.Url.revokeObjectUrl(url);
+      });
+      
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('PDF Error'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Could not load PDF file:'),
+                SizedBox(height: 8),
+                Text(
+                  pdfPath,
+                  style: TextStyle(fontFamily: 'monospace', fontSize: 12),
+                ),
+                SizedBox(height: 12),
+                Text('Error: ${e.toString()}'),
+                SizedBox(height: 12),
+                Text('Please check:'),
+                Text('• PDF file exists in assets/files/'),
+                Text('• PDF is not corrupted or password-protected'),
+                Text('• File is properly referenced in pubspec.yaml'),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -92,8 +128,7 @@ class _PostUniState extends State<PostUni> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Post Uni',
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+        title: Text('Post Uni', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
         backgroundColor: const Color.fromARGB(255, 169, 169, 169),
         leading: IconButton(
           key: _menuKey,
@@ -118,7 +153,7 @@ class _PostUniState extends State<PostUni> {
             child: Column(
               children: [
                 SizedBox(height: 50),
-                // Portfolio Container
+
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   margin: EdgeInsets.symmetric(vertical: 20),
@@ -133,13 +168,11 @@ class _PostUniState extends State<PostUni> {
                       children: [
                         Text(
                           'Portfolio',
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold,),
                         ),
                         SizedBox(height: 10),
+                        
+                        // Text content only
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -149,11 +182,12 @@ class _PostUniState extends State<PostUni> {
                           ),
                         ),
                         SizedBox(height: 10),
+
                       ],
                     ),
                   ),
                 ),
-                // AI Image Generator Container
+
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   margin: EdgeInsets.symmetric(vertical: 20),
@@ -168,13 +202,11 @@ class _PostUniState extends State<PostUni> {
                       children: [
                         Text(
                           'AI Image Generator',
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
                         ),
                         SizedBox(height: 20),
+                        
+                        // Centered Image
                         Center(
                           child: Container(
                             width: 575,
@@ -184,13 +216,15 @@ class _PostUniState extends State<PostUni> {
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/images/85.png',
+                              'assets/images/85.png', 
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
                           ),
                         ),
+                        
                         SizedBox(height: 20),
+                        
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -199,7 +233,9 @@ class _PostUniState extends State<PostUni> {
                             textAlign: TextAlign.center,
                           ),
                         ),
+                        
                         SizedBox(height: 20),
+                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
@@ -219,10 +255,7 @@ class _PostUniState extends State<PostUni> {
                             ),
                             child: Text(
                               'Open Project',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -230,7 +263,7 @@ class _PostUniState extends State<PostUni> {
                     ),
                   ),
                 ),
-                // AI Model Generator Container
+
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   margin: EdgeInsets.symmetric(vertical: 20),
@@ -245,13 +278,10 @@ class _PostUniState extends State<PostUni> {
                       children: [
                         Text(
                           'AI Model Generator',
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
                         ),
                         SizedBox(height: 20),
+                        
                         Center(
                           child: Container(
                             width: 575,
@@ -261,13 +291,15 @@ class _PostUniState extends State<PostUni> {
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/images/94.png',
+                              'assets/images/94.png', 
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
                           ),
                         ),
+                        
                         SizedBox(height: 20),
+                        
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -276,7 +308,9 @@ class _PostUniState extends State<PostUni> {
                             textAlign: TextAlign.center,
                           ),
                         ),
+                        
                         SizedBox(height: 20),
+                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
@@ -296,10 +330,7 @@ class _PostUniState extends State<PostUni> {
                             ),
                             child: Text(
                               'Open Project',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -307,7 +338,7 @@ class _PostUniState extends State<PostUni> {
                     ),
                   ),
                 ),
-                // AI Chess Game Container
+
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   margin: EdgeInsets.symmetric(vertical: 20),
@@ -322,13 +353,10 @@ class _PostUniState extends State<PostUni> {
                       children: [
                         Text(
                           'AI Chess Game',
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
                         ),
                         SizedBox(height: 20),
+                        
                         Center(
                           child: Container(
                             width: 575,
@@ -338,22 +366,27 @@ class _PostUniState extends State<PostUni> {
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/images/105.png',
+                              'assets/images/105.png', 
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
                           ),
                         ),
+                        
                         SizedBox(height: 20),
+                        
+                        // Text below image
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
-                            "A chess application featuring both local multiplayer and AI opponents. The game implements an interactive board and peices with all standard chess rules.",
+                          "A chess application featuring both local multiplayer and AI opponents. The game implements an interactive board and peices with all standard chess rules.",
                             style: TextStyle(fontSize: 16, color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
                         ),
+                        
                         SizedBox(height: 20),
+                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
@@ -373,10 +406,7 @@ class _PostUniState extends State<PostUni> {
                             ),
                             child: Text(
                               'Open Project',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -384,6 +414,7 @@ class _PostUniState extends State<PostUni> {
                     ),
                   ),
                 ),
+
                 // AZ900 Certification Container
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
@@ -399,13 +430,10 @@ class _PostUniState extends State<PostUni> {
                       children: [
                         Text(
                           'Azure Fundamentals (AZ-900)',
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold,),
                         ),
                         SizedBox(height: 10),
+                        
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -415,13 +443,13 @@ class _PostUniState extends State<PostUni> {
                           ),
                         ),
                         SizedBox(height: 10),
+                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
                           child: ElevatedButton(
                             onPressed: () {
-                              _openPdf('assets/pdfs/AZ900.pdf',
-                                  'Azure Fundamentals (AZ-900)');
+                              _openPDFViewer('assets/pdfs/AZ900.pdf', 'AZ-900 Certificate');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
@@ -435,10 +463,7 @@ class _PostUniState extends State<PostUni> {
                             ),
                             child: Text(
                               'Open PDF',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -446,6 +471,7 @@ class _PostUniState extends State<PostUni> {
                     ),
                   ),
                 ),
+
                 // AZ104 Certification Container
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
@@ -461,13 +487,10 @@ class _PostUniState extends State<PostUni> {
                       children: [
                         Text(
                           'Azure Administrator (AZ-104)',
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold,),
                         ),
                         SizedBox(height: 10),
+                        
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -477,13 +500,13 @@ class _PostUniState extends State<PostUni> {
                           ),
                         ),
                         SizedBox(height: 10),
+                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
                           child: ElevatedButton(
                             onPressed: () {
-                              _openPdf('assets/pdfs/AZ104.pdf',
-                                  'Azure Administrator (AZ-104)');
+                              _openPDFViewer('assets/pdfs/AZ104.pdf', 'AZ-104 Certificate');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
@@ -497,10 +520,7 @@ class _PostUniState extends State<PostUni> {
                             ),
                             child: Text(
                               'Open PDF',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -508,6 +528,7 @@ class _PostUniState extends State<PostUni> {
                     ),
                   ),
                 ),
+
                 // AWS Cloud Practitioner Certification Container
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
@@ -523,13 +544,10 @@ class _PostUniState extends State<PostUni> {
                       children: [
                         Text(
                           'AWS Cloud Practitioner (CLF-C02)',
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold,),
                         ),
                         SizedBox(height: 10),
+                        
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -539,14 +557,13 @@ class _PostUniState extends State<PostUni> {
                           ),
                         ),
                         SizedBox(height: 10),
+                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
                           child: ElevatedButton(
                             onPressed: () {
-                              _openPdf(
-                                  'assets/pdfs/AWS Certified Cloud Practitioner certificate (2).pdf',
-                                  'AWS Cloud Practitioner (CLF-C02)');
+                              _openPDFViewer('assets/pdfs/AWS Certified Cloud Practitioner certificate (2).pdf', 'AWS Cloud Practitioner Certificate');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
@@ -560,10 +577,7 @@ class _PostUniState extends State<PostUni> {
                             ),
                             child: Text(
                               'Open PDF',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -571,7 +585,8 @@ class _PostUniState extends State<PostUni> {
                     ),
                   ),
                 ),
-                // Task Manager Container
+
+                // Project 1 Container
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   margin: EdgeInsets.symmetric(vertical: 20),
@@ -586,13 +601,10 @@ class _PostUniState extends State<PostUni> {
                       children: [
                         Text(
                           'Task Manager',
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
                         ),
                         SizedBox(height: 20),
+                        
                         Center(
                           child: Container(
                             width: 575,
@@ -602,13 +614,15 @@ class _PostUniState extends State<PostUni> {
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/images/placeholder1.png',
+                              'assets/images/placeholder1.png', 
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
                           ),
                         ),
+                        
                         SizedBox(height: 20),
+                        
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -617,7 +631,9 @@ class _PostUniState extends State<PostUni> {
                             textAlign: TextAlign.center,
                           ),
                         ),
+                        
                         SizedBox(height: 20),
+                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
@@ -637,10 +653,7 @@ class _PostUniState extends State<PostUni> {
                             ),
                             child: Text(
                               'Open Project',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -648,7 +661,8 @@ class _PostUniState extends State<PostUni> {
                     ),
                   ),
                 ),
-                // Application Tracker Container
+
+                // Project 2 Container
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   margin: EdgeInsets.symmetric(vertical: 20),
@@ -663,13 +677,10 @@ class _PostUniState extends State<PostUni> {
                       children: [
                         Text(
                           'Application Tracker',
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
                         ),
                         SizedBox(height: 20),
+                        
                         Center(
                           child: Container(
                             width: 575,
@@ -679,13 +690,15 @@ class _PostUniState extends State<PostUni> {
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/images/placeholder2.png',
+                              'assets/images/placeholder2.png', 
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
                           ),
                         ),
+                        
                         SizedBox(height: 20),
+                        
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -694,7 +707,9 @@ class _PostUniState extends State<PostUni> {
                             textAlign: TextAlign.center,
                           ),
                         ),
+                        
                         SizedBox(height: 20),
+                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
@@ -714,10 +729,7 @@ class _PostUniState extends State<PostUni> {
                             ),
                             child: Text(
                               'Open Project',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -725,7 +737,8 @@ class _PostUniState extends State<PostUni> {
                     ),
                   ),
                 ),
-                // API Intel Container
+
+                // Project 3 Container
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   margin: EdgeInsets.symmetric(vertical: 20),
@@ -740,13 +753,10 @@ class _PostUniState extends State<PostUni> {
                       children: [
                         Text(
                           'API Intel',
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
                         ),
                         SizedBox(height: 20),
+                        
                         Center(
                           child: Container(
                             width: 575,
@@ -756,13 +766,15 @@ class _PostUniState extends State<PostUni> {
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/images/placeholder3.png',
+                              'assets/images/placeholder3.png', 
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
                           ),
                         ),
+                        
                         SizedBox(height: 20),
+                        
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
@@ -771,7 +783,9 @@ class _PostUniState extends State<PostUni> {
                             textAlign: TextAlign.center,
                           ),
                         ),
+                        
                         SizedBox(height: 20),
+                        
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.only(top: 0),
@@ -791,10 +805,7 @@ class _PostUniState extends State<PostUni> {
                             ),
                             child: Text(
                               'Open Project',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -802,6 +813,7 @@ class _PostUniState extends State<PostUni> {
                     ),
                   ),
                 ),
+
                 // Navigation Buttons
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
@@ -811,10 +823,7 @@ class _PostUniState extends State<PostUni> {
                       Center(
                         child: Text(
                           'Quick Navigation',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ),
                       SizedBox(height: 16),
@@ -920,43 +929,12 @@ class _PostUniState extends State<PostUni> {
                     ],
                   ),
                 ),
+
                 SizedBox(height: 50),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-// Separate PDF Viewer Page
-class PdfViewerPage extends StatelessWidget {
-  final String assetPath;
-  final String title;
-
-  const PdfViewerPage({
-    Key? key,
-    required this.assetPath,
-    required this.title,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          title,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: const Color.fromARGB(255, 169, 169, 169),
-        iconTheme: IconThemeData(color: Colors.black),
-      ),
-      body: SfPdfViewer.asset(
-        assetPath,
-        canShowScrollHead: true,
-        canShowScrollStatus: true,
-        enableDoubleTapZooming: true,
       ),
     );
   }
