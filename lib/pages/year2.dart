@@ -209,7 +209,7 @@ showMenu(
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
                               'assets/images/59.png',
-                              fit: BoxFit.width,
+                              fit: BoxFit.contain,
                               errorBuilder: (context, error, stackTrace) {
                                 return Center(
                                   child: Text(
