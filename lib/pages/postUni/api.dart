@@ -13,17 +13,16 @@ class _Project3State extends State<Project3> {
   
   int _currentImageIndex = 0;
   int _thumbnailStartIndex = 0;
-  int _thumbnailsPerPage = 7;
-  int _maxThumbnailsPerPage = 7;
+  int _thumbnailsPerPage = 4;
+  int _maxThumbnailsPerPage = 4;
   int _minThumbnailsPerPage = 3;
   bool _hasRenderFlex = false;
   
   List<String> _imagePaths = [
-    'assets/images/placeholder1_1.png',
-    'assets/images/placeholder1_2.png',
-    'assets/images/placeholder1_3.png',
-    'assets/images/placeholder1_4.png',
-    'assets/images/placeholder1_5.png',
+    'assets/images/150.png',
+    'assets/images/147.png',
+    'assets/images/148.png',
+    'assets/images/149.png',
   ];
 
   void _launchURL(String url) {
