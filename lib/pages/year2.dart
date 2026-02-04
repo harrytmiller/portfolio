@@ -202,7 +202,6 @@ showMenu(
                         Center(
                           child: Container(
                             width: 575,
-                            height: 350,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(8),
@@ -210,7 +209,7 @@ showMenu(
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
                               'assets/images/59.png',
-                              fit: BoxFit.contain,
+                              fit: BoxFit.width,
                               errorBuilder: (context, error, stackTrace) {
                                 return Center(
                                   child: Text(
