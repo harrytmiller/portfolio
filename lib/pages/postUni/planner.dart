@@ -144,7 +144,7 @@ class _Project1State extends State<Project1> {
                         
                         Container(
                           child: Text(
-                            'I programmed this app using Javascript with React/Next.js, I also used JSX and Tailwind CSS. It has 2 main features: daily planner and list management. It uses firebase to store the lists and daily tasks/habits to users accounts. The daily planner allows users to add habits and tasks. Habits are added to all days and tasks are only added to a single day. Both habits and tasks include a count of how many times the user plans to do said action. They can check them off as they complete them. The lists page allows users to create lists and tags. They can apply the tags to lists and filter tags. The app also includes a dark mode.',
+                            'I programmed this app using Javascript with React/Next.js, I also used JSX and Tailwind CSS. It has 2 main features: daily planner and list management. It uses firebase to store the lists and daily tasks/habits to users accounts. The daily planner allows users to add habits and tasks. Habits are added to all days and tasks are only added to a single date. Both habits and tasks include a count of how many times the user plans to do said action. They can check them off as they complete them. The lists page allows users to create lists and tags. They can apply the tags to lists and filter tags. The app also includes a dark mode.',
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.black,

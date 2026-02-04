@@ -130,7 +130,7 @@ class _Project3State extends State<Project3> {
                         
                         Container(
                           child: Text(
-                            'I programmed this app using Javascript with React/Next.js, I also used JSX and Tailwind CSS. The purpose of the app is to analyze REST API contracts by comparing OpenAPI specifications against real traffic data. It detects issues such as type mismatches, undocumented fields, and unused fields. It identifies dead endpoints with zero traffic and deprecated endpoints still receiving requests. The app displays a contract health score, endpoint statistics, and field usage percentages. It includes an optimiser that shows which endpoints and fields are safe to delete. The app also features a dark mode.',
+                            'I programmed this app using Javascript with React/Next.js; I also used JSX and Tailwind CSS. The purpose of the app is to analyze REST API contracts by comparing OpenAPI specifications against real traffic data. It detects issues such as type mismatches, undocumented fields, and unused fields. It identifies dead endpoints with zero traffic and deprecated endpoints still receiving requests. The app displays a contract health score, endpoint statistics, and field usage percentages. It includes an optimiser that shows which endpoints and fields are safe to delete. The app also features a dark mode.',
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.black,
