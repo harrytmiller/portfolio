@@ -26,6 +26,7 @@ class _Project2State extends State<Project2> {
     'assets/images/139.png',
     'assets/images/140.png',
     'assets/images/141.png',
+    'assets/images/141.1.png',
     'assets/images/142.png',
     'assets/images/143.png',
     'assets/images/144.png',
