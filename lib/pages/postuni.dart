@@ -763,7 +763,7 @@ width: 575,
                             ),
                             clipBehavior: Clip.hardEdge,
                             child: Image.asset(
-                              'assets/images/placeholder3.png', 
+                              'assets/images/147.png', 
                               height: 300,
                               fit: BoxFit.fitHeight,
                             ),
