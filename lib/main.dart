@@ -14,6 +14,7 @@ import 'package:portfolio/pages/postUni/chess.dart';
 import 'package:portfolio/pages/postUni/planner.dart';
 import 'package:portfolio/pages/postUni/job.dart';
 import 'package:portfolio/pages/postUni/api.dart';
+import 'package:portfolio/pages/postUni/message.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,6 +48,7 @@ class MainApp extends StatelessWidget {
         '/Project1': (context) => Project1(),
         '/Project2': (context) => Project2(),
         '/Project3': (context) => Project3(),
+        '/MessageApp': (context) => MessagePage(),
       },
     );
   }

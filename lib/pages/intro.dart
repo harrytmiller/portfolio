@@ -366,7 +366,9 @@ class _IntroState extends State<Intro> {
                       '       -AWS Cloud Practitioner (CLF-C02): Cloud certification covering AWS fundamentals, completed on first attempt\n'
                       '       -Task Manager: An application that helps users plan their daily tasks\n'
                       '       -Application Tracker: An application that allows users to add and view jobs they\'ve applied for with insights\n'
-                      '       -API Intel: An application that allows users to see analytics on REST APIs that have OpenAPI specification and traffic data'
+                      '       -API Intel: An application that allows users to see analytics on REST APIs that have OpenAPI specification and traffic data\n'
+                      '       -Message App: A real-time messaging app with friend requests, user search, and authentication'
+
                       ,
 
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),

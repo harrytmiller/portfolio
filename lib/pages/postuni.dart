@@ -811,6 +811,82 @@ width: 575,
                   ),
                 ),
 
+                // Message App Container
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 169, 169, 169),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Message App',
+                          style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold, ),
+                        ),
+                        SizedBox(height: 20),
+                        
+                        Center(
+                          child: Container(
+                            width: 575,
+                            height: 350,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            clipBehavior: Clip.hardEdge,
+                            child: Image.asset(
+                              'assets/images/151.png', 
+                              height: 300,
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
+                        
+                        SizedBox(height: 20),
+                        
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            'A real-time messaging app with friend requests, user search, and authentication.',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        
+                        SizedBox(height: 20),
+                        
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.only(top: 0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/MessageApp');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'Open Project',
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
                 // Navigation Buttons
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
