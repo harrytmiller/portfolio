@@ -343,8 +343,7 @@ class _IntroState extends State<Intro> {
                     Text(
                       '• Year 2: Projects and coursework completed during my second year at university\n'
                       '       -3D Design and Animation: Modelling and animation showcase page, including video and picture renders\n'
-                      '       -Software Engineering: Full stack recipe generation app showcase page, including screenshots and running prototype\n'
-                      '       -My First App: Movie recommender app showcase page, including screenshots and running prototype',
+                      '       -Software Engineering: Full stack recipe generation app showcase page, including screenshots and running prototype',
                       style: TextStyle(fontSize: 16, color: Colors.black, height: 1.4),
                     ),                    
                     SizedBox(height: 6),
