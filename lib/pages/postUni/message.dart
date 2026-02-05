@@ -10,14 +10,14 @@ class MessagePage extends StatefulWidget {
 
 class _MessagePageState extends State<MessagePage> {
   final ScrollController _scrollController = ScrollController();
-  
+
   int _currentImageIndex = 0;
   int _thumbnailStartIndex = 0;
   int _thumbnailsPerPage = 4;
   int _maxThumbnailsPerPage = 4;
   int _minThumbnailsPerPage = 3;
   bool _hasRenderFlex = false;
-  
+
   List<String> _imagePaths = [
     'assets/images/151.png',
     'assets/images/151.1.png',
@@ -48,7 +48,8 @@ class _MessagePageState extends State<MessagePage> {
         _thumbnailsPerPage--;
         _hasRenderFlex = true;
         if (_thumbnailStartIndex + _thumbnailsPerPage > _imagePaths.length) {
-          _thumbnailStartIndex = (_imagePaths.length - _thumbnailsPerPage).clamp(0, _imagePaths.length - 1);
+          _thumbnailStartIndex =
+              (_imagePaths.length - _thumbnailsPerPage).clamp(0, _imagePaths.length - 1);
         }
       });
     }
@@ -61,10 +62,12 @@ class _MessagePageState extends State<MessagePage> {
         final availableWidth = screenWidth * 0.9 - 80;
         final thumbnailWidth = 92.0;
         final maxFittable = (availableWidth / thumbnailWidth).floor();
-        
-        if (maxFittable > _thumbnailsPerPage && _thumbnailsPerPage < _maxThumbnailsPerPage) {
+
+        if (maxFittable > _thumbnailsPerPage &&
+            _thumbnailsPerPage < _maxThumbnailsPerPage) {
           setState(() {
-            _thumbnailsPerPage = (maxFittable).clamp(_minThumbnailsPerPage, _maxThumbnailsPerPage);
+            _thumbnailsPerPage =
+                (maxFittable).clamp(_minThumbnailsPerPage, _maxThumbnailsPerPage);
             if (_thumbnailsPerPage == _maxThumbnailsPerPage) {
               _hasRenderFlex = false;
             }
@@ -83,11 +86,13 @@ class _MessagePageState extends State<MessagePage> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) => _checkLayoutSpace());
-    
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Message App', 
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+        title: Text(
+          'Message App',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: const Color.fromARGB(255, 169, 169, 169),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
@@ -111,7 +116,6 @@ class _MessagePageState extends State<MessagePage> {
             child: Column(
               children: [
                 SizedBox(height: 50),
-
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   margin: EdgeInsets.symmetric(vertical: 20),
@@ -126,17 +130,15 @@ class _MessagePageState extends State<MessagePage> {
                         Text(
                           'Message App',
                           style: TextStyle(
-                              fontSize: 22,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              ),
+                            fontSize: 22,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 16),
-                        
                         Container(
                           child: Text(
-                            'I programmed this app using Javascript with React, I also used JSX and inline styling. It uses Firebase for authentication and Firestore for real-time data storage. Users can create an account and sign in to create a profile with a unique username. Users can search for other users by username and send friend requests. When a friend request is accepted, a chat is automatically created between the two users. Messages are sent and received in real-time using Firestore listeners. Users can view all their conversations on the main dashboard and delete chats they no longer need. The app also includes a dark/light mode toggle that saves to local storage.'
-
+                            'I programmed this app using Javascript with React, I also used JSX and inline styling. It uses Firebase for authentication and Firestore for real-time data storage. Users can create an account and sign in to create a profile with a unique username. Users can search for other users by username and send friend requests. When a friend request is accepted, a chat is automatically created between the two users. Messages are sent and received in real-time using Firestore listeners. Users can view all their conversations on the main dashboard and delete chats they no longer need. The app also includes a dark/light mode toggle that saves to local storage.',
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.black,
@@ -144,14 +146,13 @@ class _MessagePageState extends State<MessagePage> {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        
                         SizedBox(height: 30),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             GestureDetector(
-                              onTap: () => _launchURL('https://harrytmiller.github.io/message-app/'), 
+                              onTap: () => _launchURL(
+                                  'https://harrytmiller.github.io/message-app/'),
                               child: Text(
                                 'Live Demo',
                                 style: TextStyle(
@@ -164,7 +165,8 @@ class _MessagePageState extends State<MessagePage> {
                             ),
                             SizedBox(width: 24),
                             GestureDetector(
-                              onTap: () => _launchURL('https://github.com/harrytmiller/message-app'), 
+                              onTap: () => _launchURL(
+                                  'https://github.com/harrytmiller/message-app'),
                               child: Text(
                                 'GitHub Repository',
                                 style: TextStyle(
@@ -177,16 +179,12 @@ class _MessagePageState extends State<MessagePage> {
                             ),
                           ],
                         ),
-                        
                         SizedBox(height: 30),
-
                         _buildImageGallery(),
-
                       ],
                     ),
                   ),
                 ),
-
                 SizedBox(height: 50),
               ],
             ),
@@ -247,7 +245,6 @@ class _MessagePageState extends State<MessagePage> {
                   ),
                 ),
               ),
-              
               Positioned(
                 left: 16,
                 top: 0,
@@ -269,7 +266,6 @@ class _MessagePageState extends State<MessagePage> {
                   ),
                 ),
               ),
-              
               Positioned(
                 right: 16,
                 top: 0,
@@ -291,7 +287,6 @@ class _MessagePageState extends State<MessagePage> {
                   ),
                 ),
               ),
-              
               Positioned(
                 bottom: 16,
                 right: 16,
@@ -314,9 +309,7 @@ class _MessagePageState extends State<MessagePage> {
             ],
           ),
         ),
-        
         SizedBox(height: 20),
-        
         Center(
           child: Column(
             children: [
@@ -327,25 +320,26 @@ class _MessagePageState extends State<MessagePage> {
                     final availableWidth = constraints.maxWidth - 80;
                     final thumbnailWidth = 92.0;
                     final maxFittable = (availableWidth / thumbnailWidth).floor();
-                    
-                    if (maxFittable < _thumbnailsPerPage && maxFittable >= _minThumbnailsPerPage) {
+
+                    if (maxFittable < _thumbnailsPerPage &&
+                        maxFittable >= _minThumbnailsPerPage) {
                       WidgetsBinding.instance.addPostFrameCallback((_) {
                         _handleRenderFlexOverflow();
                       });
                     }
-                    
+
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         IconButton(
-                          onPressed: _thumbnailStartIndex > 0 ? _previousThumbnailPage : null,
+                          onPressed:
+                              _thumbnailStartIndex > 0 ? _previousThumbnailPage : null,
                           icon: Icon(
                             Icons.arrow_back_ios,
                             color: _thumbnailStartIndex > 0 ? Colors.black : Colors.grey,
                             size: 20,
                           ),
                         ),
-                        
                         Flexible(
                           child: Container(
                             width: _thumbnailsPerPage * 92.0,
@@ -365,7 +359,9 @@ class _MessagePageState extends State<MessagePage> {
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
-                                        color: isSelected ? Colors.blue : Colors.grey.shade300,
+                                        color: isSelected
+                                            ? Colors.blue
+                                            : Colors.grey.shade300,
                                         width: isSelected ? 3 : 1,
                                       ),
                                     ),
@@ -378,7 +374,9 @@ class _MessagePageState extends State<MessagePage> {
                                           child: Icon(
                                             Icons.broken_image,
                                             size: 24,
-                                            color: isSelected ? Colors.blue : Colors.grey.shade400,
+                                            color: isSelected
+                                                ? Colors.blue
+                                                : Colors.grey.shade400,
                                           ),
                                         );
                                       },
@@ -389,12 +387,17 @@ class _MessagePageState extends State<MessagePage> {
                             ),
                           ),
                         ),
-                        
                         IconButton(
-                          onPressed: _thumbnailStartIndex + _thumbnailsPerPage < _imagePaths.length ? _nextThumbnailPage : null,
+                          onPressed: _thumbnailStartIndex + _thumbnailsPerPage 
+                                  _imagePaths.length
+                              ? _nextThumbnailPage
+                              : null,
                           icon: Icon(
                             Icons.arrow_forward_ios,
-                            color: _thumbnailStartIndex + _thumbnailsPerPage < _imagePaths.length ? Colors.black : Colors.grey,
+                            color: _thumbnailStartIndex + _thumbnailsPerPage 
+                                    _imagePaths.length
+                                ? Colors.black
+                                : Colors.grey,
                             size: 20,
                           ),
                         ),
@@ -403,9 +406,7 @@ class _MessagePageState extends State<MessagePage> {
                   },
                 ),
               ),
-              
               SizedBox(height: 10),
-              
               Text(
                 'Images ${_thumbnailStartIndex + 1}-${_thumbnailStartIndex + _getVisibleThumbnailCount()} of ${_imagePaths.length}',
                 style: TextStyle(
@@ -436,31 +437,36 @@ class _MessagePageState extends State<MessagePage> {
 
   void _previousImage() {
     setState(() {
-      _currentImageIndex = (_currentImageIndex - 1 + _imagePaths.length) % _imagePaths.length;
+      _currentImageIndex =
+          (_currentImageIndex - 1 + _imagePaths.length) % _imagePaths.length;
       _ensureThumbnailVisible(_currentImageIndex);
     });
   }
 
   void _nextThumbnailPage() {
     setState(() {
-      _thumbnailStartIndex = (_thumbnailStartIndex + _thumbnailsPerPage).clamp(0, _imagePaths.length - _thumbnailsPerPage);
+      _thumbnailStartIndex = (_thumbnailStartIndex + _thumbnailsPerPage)
+          .clamp(0, _imagePaths.length - _thumbnailsPerPage);
     });
   }
 
   void _previousThumbnailPage() {
     setState(() {
-      _thumbnailStartIndex = (_thumbnailStartIndex - _thumbnailsPerPage).clamp(0, _imagePaths.length - 1);
+      _thumbnailStartIndex = (_thumbnailStartIndex - _thumbnailsPerPage)
+          .clamp(0, _imagePaths.length - 1);
     });
   }
 
   void _ensureThumbnailVisible(int imageIndex) {
-    if (imageIndex < _thumbnailStartIndex || imageIndex >= _thumbnailStartIndex + _thumbnailsPerPage) {
+    if (imageIndex < _thumbnailStartIndex ||
+        imageIndex >= _thumbnailStartIndex + _thumbnailsPerPage) {
       int targetPage = imageIndex ~/ _thumbnailsPerPage;
-      _thumbnailStartIndex = (targetPage * _thumbnailsPerPage).clamp(0, _imagePaths.length - _thumbnailsPerPage);
+      _thumbnailStartIndex = (targetPage * _thumbnailsPerPage)
+          .clamp(0, _imagePaths.length - _thumbnailsPerPage);
     }
   }
 
   int _getVisibleThumbnailCount() {
-    return (_imagePaths.length - _thumbnailStartIndex).clamp(1, _thumbnailsPerPage);  
+    return (_imagePaths.length - _thumbnailStartIndex).clamp(1, _thumbnailsPerPage);
   }
 }
