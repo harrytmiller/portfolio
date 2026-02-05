@@ -388,14 +388,12 @@ class _MessagePageState extends State<MessagePage> {
                           ),
                         ),
                         IconButton(
-                          onPressed: _thumbnailStartIndex + _thumbnailsPerPage 
-                                  _imagePaths.length
+                          onPressed: _thumbnailStartIndex + _thumbnailsPerPage < _imagePaths.length
                               ? _nextThumbnailPage
                               : null,
                           icon: Icon(
                             Icons.arrow_forward_ios,
-                            color: _thumbnailStartIndex + _thumbnailsPerPage 
-                                    _imagePaths.length
+                            color: _thumbnailStartIndex + _thumbnailsPerPage < _imagePaths.length
                                 ? Colors.black
                                 : Colors.grey,
                             size: 20,
