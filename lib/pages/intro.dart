@@ -468,192 +468,259 @@ class _IntroState extends State<Intro> {
                 ),
 
                 // Grade Breakdown Container
-                _buildContainer(
-                  title: 'Grade Breakdown',
-                  children: [
-                    Text(
-                      'Academic Standing',
-                      style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w600),
-                    ),
-                    SizedBox(height: 12),
-                    Container(
-                      padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 150, 150, 150),
-                        borderRadius: BorderRadius.circular(8),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: EdgeInsets.symmetric(vertical: 15),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 169, 169, 169),
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        spreadRadius: 1,
+                        blurRadius: 4,
+                        offset: Offset(0, 2),
                       ),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Overall GPA:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                              Text('4.00', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                            ],
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 20),
+                      Container(
+                        width: double.infinity,
+                        child: Text(
+                          'Grade Breakdown',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
                           ),
-                          SizedBox(height: 8),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Year 2 Average:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                              Text('74.40%.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                            ],
-                          ),
-                          SizedBox(height: 8),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Year 3 Average:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                              Text('70.00%.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                            ],
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 16),
-                    
-                    // Year 2 Modules Table
-                    Text(
-                      'Year 2 Modules With Grades',
-                      style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w600),
-                    ),
-                    SizedBox(height: 8),
-                    Table(
-                      columnWidths: {
-                        0: FlexColumnWidth(3),
-                        1: FlexColumnWidth(1),
-                      },
-                      children: [
-                        TableRow(children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('USER EXPERIENCE DESIGN AND IMPLEMENTATION', style: TextStyle(fontSize: 16, color: Colors.black)),
+                      SizedBox(height: 16),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Academic Standing',
+                              style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w600),
+                            ),
+                            SizedBox(height: 12),
+                            Container(
+                              padding: EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 150, 150, 150),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('Overall GPA:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                                      Text('4.00', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                  SizedBox(height: 8),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('Year 2 Average:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                                      Text('74.40%.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                  SizedBox(height: 8),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('Year 3 Average:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                                      Text('70.00%.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 16),
+                            
+                            // Year 2 Modules Table
+                            Text(
+                              'Year 2 Modules With Grades',
+                              style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w600),
+                            ),
+                            SizedBox(height: 8),
+                            Table(
+                              columnWidths: {
+                                0: FlexColumnWidth(3),
+                                1: FlexColumnWidth(1),
+                              },
+                              children: [
+                                TableRow(children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('USER EXPERIENCE DESIGN AND IMPLEMENTATION', style: TextStyle(fontSize: 16, color: Colors.black)),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('70.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('SOFTWARE ENGINEERING THEORY AND PRACTICE', style: TextStyle(fontSize: 16, color: Colors.black)),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('78.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('3D COMPUTER GRAPHICS AND ANIMATION', style: TextStyle(fontSize: 16, color: Colors.black)),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('78.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('OPERATING SYSTEMS AND INTERNETWORKING', style: TextStyle(fontSize: 16, color: Colors.black)),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('81.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('DATABASE PRINCIPLES', style: TextStyle(fontSize: 16, color: Colors.black)),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('70.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('BUSINESS INFORMATION SYSTEMS SECURITY', style: TextStyle(fontSize: 16, color: Colors.black)),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('70.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
+                                  ),
+                                ]),
+                              ],
+                            ),
+                            
+                            SizedBox(height: 16),
+                            
+                            // Year 3 Modules Table
+                            Text(
+                              'Year 3 Modules With Grades',
+                              style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w600),
+                            ),
+                            SizedBox(height: 8),
+                            Table(
+                              columnWidths: {
+                                0: FlexColumnWidth(3),
+                                1: FlexColumnWidth(1),
+                              },
+                              children: [
+                                TableRow(children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('ARTIFICIAL INTELLIGENCE', style: TextStyle(fontSize: 16, color: Colors.black)),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('75.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('ADVANCED NETWORKS', style: TextStyle(fontSize: 16, color: Colors.black)),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('75.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('SECURITY AND CRYPTOGRAPHY', style: TextStyle(fontSize: 16, color: Colors.black)),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('80.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('USABILITY TESTING', style: TextStyle(fontSize: 16, color: Colors.black)),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('64.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('INDIVIDUAL PROJECT (ENGINEERING)', style: TextStyle(fontSize: 16, color: Colors.black)),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2),
+                                    child: Text('65.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
+                                  ),
+                                ]),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.only(top: 0),
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            _openPDFViewer('assets/files/transcript.pdf', 'Academic Transcript');
+                          },
+                          icon: Icon(Icons.picture_as_pdf, color: Colors.white),
+                          label: Text(
+                            'View Transcript',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('70.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue,
+                            padding: EdgeInsets.symmetric(vertical: 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(12),
+                                bottomRight: Radius.circular(12),
+                              ),
+                            ),
                           ),
-                        ]),
-                        TableRow(children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('SOFTWARE ENGINEERING THEORY AND PRACTICE', style: TextStyle(fontSize: 16, color: Colors.black)),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('78.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
-                          ),
-                        ]),
-                        TableRow(children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('3D COMPUTER GRAPHICS AND ANIMATION', style: TextStyle(fontSize: 16, color: Colors.black)),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('78.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
-                          ),
-                        ]),
-                        TableRow(children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('OPERATING SYSTEMS AND INTERNETWORKING', style: TextStyle(fontSize: 16, color: Colors.black)),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('81.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
-                          ),
-                        ]),
-                        TableRow(children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('DATABASE PRINCIPLES', style: TextStyle(fontSize: 16, color: Colors.black)),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('70.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
-                          ),
-                        ]),
-                        TableRow(children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('BUSINESS INFORMATION SYSTEMS SECURITY', style: TextStyle(fontSize: 16, color: Colors.black)),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('70.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
-                          ),
-                        ]),
-                      ],
-                    ),
-                    
-                    SizedBox(height: 16),
-                    
-                    // Year 3 Modules Table
-                    Text(
-                      'Year 3 Modules With Grades',
-                      style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w600),
-                    ),
-                    SizedBox(height: 8),
-                    Table(
-                      columnWidths: {
-                        0: FlexColumnWidth(3),
-                        1: FlexColumnWidth(1),
-                      },
-                      children: [
-                        TableRow(children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('ARTIFICIAL INTELLIGENCE', style: TextStyle(fontSize: 16, color: Colors.black)),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('75.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
-                          ),
-                        ]),
-                        TableRow(children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('ADVANCED NETWORKS', style: TextStyle(fontSize: 16, color: Colors.black)),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('75.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
-                          ),
-                        ]),
-                        TableRow(children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('SECURITY AND CRYPTOGRAPHY', style: TextStyle(fontSize: 16, color: Colors.black)),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('80.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
-                          ),
-                        ]),
-                        TableRow(children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('USABILITY TESTING', style: TextStyle(fontSize: 16, color: Colors.black)),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('64.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
-                          ),
-                        ]),
-                        TableRow(children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('INDIVIDUAL PROJECT (ENGINEERING)', style: TextStyle(fontSize: 16, color: Colors.black)),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2),
-                            child: Text('65.00%', style: TextStyle(fontSize: 16, color: Colors.black), textAlign: TextAlign.right),
-                          ),
-                        ]),
-                      ],
-                    ),
-                  ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
 
                 // Navigation Buttons
